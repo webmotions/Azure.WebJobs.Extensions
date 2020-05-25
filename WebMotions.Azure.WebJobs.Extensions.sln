@@ -3,7 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMotions.Azure.WebJobs.Extensions.Slack", "WebMotions.Azure.WebJobs.Extensions.Slack\WebMotions.Azure.WebJobs.Extensions.Slack.csproj", "{D99BEF5A-9258-494D-BD4D-D6FDE31D12C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMotions.Azure.WebJobs.Extensions.Slack", "src\WebMotions.Azure.WebJobs.Extensions.Slack\WebMotions.Azure.WebJobs.Extensions.Slack.csproj", "{D99BEF5A-9258-494D-BD4D-D6FDE31D12C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{63CDDF1E-B9E1-4FF5-ADE2-9A1323746024}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlackFunctionApp", "samples\SlackFunctionApp\SlackFunctionApp.csproj", "{41961132-31B6-40FA-82E1-DA4F2B66B357}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BBB76CF9-7551-4242-9E0C-1260B8E2D422}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMotions.Azure.WebJobs.Extensions.Slack.Tests", "tests\WebMotions.Azure.WebJobs.Extensions.Slack.Tests\WebMotions.Azure.WebJobs.Extensions.Slack.Tests.csproj", "{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{181E803A-4A31-4DB5-90ED-190B25154D1C}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipeline.yaml = azure-pipeline.yaml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{E01047CB-82F3-4DA4-A399-38F9B913D9D5}"
+	ProjectSection(SolutionItems) = preProject
+		build\common.props = build\common.props
+		build\SetEnvironmentVariables.ps1 = build\SetEnvironmentVariables.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +35,21 @@ Global
 		{D99BEF5A-9258-494D-BD4D-D6FDE31D12C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D99BEF5A-9258-494D-BD4D-D6FDE31D12C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D99BEF5A-9258-494D-BD4D-D6FDE31D12C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41961132-31B6-40FA-82E1-DA4F2B66B357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41961132-31B6-40FA-82E1-DA4F2B66B357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41961132-31B6-40FA-82E1-DA4F2B66B357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41961132-31B6-40FA-82E1-DA4F2B66B357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41961132-31B6-40FA-82E1-DA4F2B66B357} = {63CDDF1E-B9E1-4FF5-ADE2-9A1323746024}
+		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A} = {BBB76CF9-7551-4242-9E0C-1260B8E2D422}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5F502B5-9868-4A3D-81C8-7E420EF94108}

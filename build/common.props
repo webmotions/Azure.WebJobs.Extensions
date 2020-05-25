@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <!-- Extensions can have independent versions and only incremented when released -->
+    <Version>1.0.0$(VersionSuffix)</Version>
+    <SlackVersion>1.0.0$(VersionSuffix)</SlackVersion>
+
+    <DebugType>embedded</DebugType>
+    <CommitHash Condition="$(CommitHash) == ''">N/A</CommitHash>
+    <InformationalVersion>$(Version) Commit hash: $(CommitHash)</InformationalVersion>
+    <Authors>Dominique St-Amand</Authors>
+    <Company>WebMotions</Company>
+    <Product>WebMotions Azure WebJobs SDK Extensions</Product>
+    <RepositoryUrl>https://github.com/webmotions/Azure.WebJobs.Extensions</RepositoryUrl>
+    <Copyright>WebMotions - 2020</Copyright>
+    
+    <!-- Source link-->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- Source link-->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,77 @@
+trigger:
+  branches:
+    include:
+    - master
+    - dev
+    - release/*
+  paths:
+    exclude:
+    - '**/*.md'
+
+pr:
+  branches:
+    include:
+    - master
+    - dev
+    - release/*
+  paths:
+    exclude:
+    - '**/*.md'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  nugetPackageNameSlack: 'WebMotions.Azure.WebJobs.Extensions.Slack'
+  versionPrefix: 'dev$(Date:yyyyMMdd)$(Rev:.r)'
+
+- stage:
+  displayName: 'Build'
+  jobs:
+  - job: Build
+    steps:
+    - task: PowerShell@2
+      displayName: 'Set environment variables'
+      inputs:
+        targetType: filePath
+        filePath: ./build/SetEnvironmentVariables.ps1
+        arguments: '-CommitHash $(Build.SourceVersion)'
+    - task: DotNetCoreCLI@2
+      displayName: 'Build Slack'
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        command: build
+        arguments: '--configuration $(buildConfiguration)'
+    - task: DotNetCoreCLI@2
+      displayName: 'Build Slack'
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+      inputs:
+        command: build
+        arguments: '--configuration $(buildConfiguration) --version-prefix "-$(versionPrefix)"'
+    - task: DotNetCoreCLI@2
+        displayName: 'Test'
+        inputs:
+          command: test
+          projects: '**/tests/*.csproj'
+          arguments: '--configuration $(buildConfiguration)'
+    - task: DotNetCoreCLI@2
+      displayName: 'Pack Slack extension'
+      condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),eq(variables['Build.SourceBranch'], 'refs/heads/dev')))
+      inputs:
+        command: pack
+        packagesToPack: src/WebMotions.Azure.WebJobs.Extensions.Slack/WebMotions.Azure.WebJobs.Extensions.Slack.csproj
+        packDirectory: $(Build.ArtifactStagingDirectory)/nupkgs
+        nobuild: true
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish Slack extension'
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        command: nuget
+        arguments: 'push $(Build.ArtifactStagingDirectory)/nupkgs/$(nugetPackageNameSlack).$(Build.BuildNumber).nupkg -s https://api.nuget.org/v3/index.json -k $(NUGET_API_KEY)'
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish Slack extension'
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+      inputs:
+        command: nuget
+        arguments: 'push $(Build.ArtifactStagingDirectory)/nupkgs/$(nugetPackageNameSlack).$(Build.BuildNumber).nupkg -s https://www.myget.org/F/webmotions-azure-webjobs-extensions/api/v2/package -k $(MYGET_API_KEY)' 

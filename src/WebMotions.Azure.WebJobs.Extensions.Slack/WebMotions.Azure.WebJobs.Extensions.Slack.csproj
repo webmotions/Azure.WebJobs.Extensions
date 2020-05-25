@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\build\common.props" />
+  <PropertyGroup>
+    <Version>$(SlackVersion)</Version>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Description>This package contains binding extensions for Slack</Description>
+    <PackageId>WebMotions.Azure.WebJobs.Extensions.Slack</PackageId>
+    <Title>WebMotions Azure WebJobs Slack Extension</Title>
+    <PackageDescription>A Slack binding that allows you to easily send rich slack messages after your job functions complete.</PackageDescription>
+    <PackageTags>Slack;Azure WebJobs</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.16" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
