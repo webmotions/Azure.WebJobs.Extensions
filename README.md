@@ -2,7 +2,9 @@
 
 The Azure WebJobs Extensions is a project that includes various binding extensions for the [Azure WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk).
 
-[![Build Status](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_apis/build/status/webmotions.Azure.WebJobs.Extensions?branchName=master)](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_build/latest?definitionId=6&branchName=master)
+| Master        | Dev           |
+| ------------- |---------------|
+| [![Build Status](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_apis/build/status/webmotions.Azure.WebJobs.Extensions?branchName=master)](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_build/latest?definitionId=6&branchName=master) | [![Build Status](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_apis/build/status/webmotions.Azure.WebJobs.Extensions?branchName=master)](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_build/latest?definitionId=6&branchName=dev) |
 
 ## Extensions
 
