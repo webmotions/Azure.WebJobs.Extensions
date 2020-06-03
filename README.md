@@ -33,8 +33,7 @@ using WebMotions.Azure.WebJobs.Extensions.Slack;
 [FunctionName("YourFunction")]
 public async Task Run(
 	[HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req,
-	[Slack(WebHookUrl = "https://hooks.slack.com/services/XXXXXXXX/XXXXXXXXXX/XXXXXXXXX", 
-		  Channel = "#general")] IAsyncCollector<SlackMessage> messages,
+	[Slack(WebHookUrl = "https://hooks.slack.com/services/XXXXXXXX/XXXXXXXXXX/XXXXXXXXX")] IAsyncCollector<SlackMessage> messages,
 	ILogger logger)
 {
 	var message = new SlackMessage();
