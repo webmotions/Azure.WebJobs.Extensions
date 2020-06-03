@@ -97,14 +97,17 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Configs
                 throw new InvalidOperationException("No Slack Webhook url or the API key were found. Either one of them need to be set");
             }
 
-            if (string.IsNullOrWhiteSpace(channel))
+            if (!string.IsNullOrWhiteSpace(apiKey))
             {
-                throw new InvalidOperationException("No Slack channel was found.");
-            }
+                if (string.IsNullOrWhiteSpace(channel))
+                {
+                    throw new InvalidOperationException("No Slack channel was found. It is required when using an API Key");
+                }
 
-            if (!channel.StartsWith("#") && !channel.StartsWith("@"))
-            {
-                throw new InvalidOperationException("A channel must start with # for channels or @ for users.");
+                if (!channel.StartsWith("#") && !channel.StartsWith("@"))
+                {
+                    throw new InvalidOperationException("A channel must start with # for channels or @ for users.");
+                }
             }
 
             if (!string.IsNullOrEmpty(attr.IconUrl) && !string.IsNullOrEmpty(attr.IconEmoji))
