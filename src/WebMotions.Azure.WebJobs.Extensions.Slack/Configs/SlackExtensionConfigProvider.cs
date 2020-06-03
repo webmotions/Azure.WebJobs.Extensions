@@ -83,7 +83,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Configs
 
         private void ValidateBinding(SlackAttribute attr, Type type)
         {
-            var webHookUrl = Utility.FirstOrDefault(attr.WebHookUrl, _options.ApiKey);
+            var webHookUrl = Utility.FirstOrDefault(attr.WebHookUrl, _options.WebHookUrl);
             var apiKey = Utility.FirstOrDefault(attr.ApiKey, _options.ApiKey);
             var channel = attr.Channel;
 
