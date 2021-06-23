@@ -53,6 +53,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
                 "image" => item.ToObject<SlackImageBlock>(),
                 "input" => item.ToObject<SlackInputBlock>(),
                 "section" => item.ToObject<SlackSectionBlock>(),
+                "header" => item.ToObject<SlackHeaderBlock>(),
                 _ => null
             };
         }
