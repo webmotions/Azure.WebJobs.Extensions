@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using System;
+using FluentAssertions.Execution;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Configs;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements;
@@ -1245,6 +1246,41 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
             AssertMessage(slackMessage, expectedSlackMessage);
         }
 
+        [Fact]
+        public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_header_block()
+        {
+            var block = new SlackHeaderBlock()
+            {
+                Text = new SlackPlainText("A message with some bold text and some other text.")
+            };
+
+            var expectedSlackMessage = CreateSlackMessage(block);
+
+            var json = @"{
+              ""as_user"": false,
+              ""channel"": ""#test"",
+              ""icon_emoji"": "":smiley:"",
+              ""mrkdwn"": false,
+              ""text"": ""My Super Text"",
+              ""username"": ""MyAppBot"",
+              ""unfurl_media"": false,
+              ""blocks"": [
+                {
+                  ""type"": ""header"",
+                  ""text"": {
+                    ""type"": ""plain_text"",
+                    ""text"": ""A message with some bold text and some other text.""
+                  }
+                }
+              ]
+            }";
+            var expectedSlackJsonMessage = JObject.Parse(json);
+
+            var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
+
+            AssertMessage(slackMessage, expectedSlackMessage);
+        }
+
         private SlackMessage CreateSlackMessage(object blockElement)
         {
             var slackMessage = new SlackMessage();
@@ -1261,16 +1297,19 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
 
         private void AssertMessage(SlackMessage actual, SlackMessage expected)
         {
-            actual.AsUser.Should().Be(expected.AsUser);
-            actual.Channel.Should().Be(expected.Channel);
-            actual.IconEmoji.Should().Be(expected.IconEmoji);
-            actual.IsMarkdown.Should().Be(expected.IsMarkdown);
-            actual.IconUrl.Should().Be(expected.IconUrl);
-            actual.UnfurlLinks.Should().Be(expected.UnfurlLinks);
-            actual.UnfurlMedia.Should().Be(expected.UnfurlMedia);
-            actual.Username.Should().Be(expected.Username);
-            actual.Text.Should().Be(expected.Text);
-            actual.Blocks.Should().BeEquivalentTo(expected.Blocks);
+            using (new AssertionScope())
+            {
+                actual.AsUser.Should().Be(expected.AsUser);
+                actual.Channel.Should().Be(expected.Channel);
+                actual.IconEmoji.Should().Be(expected.IconEmoji);
+                actual.IsMarkdown.Should().Be(expected.IsMarkdown);
+                actual.IconUrl.Should().Be(expected.IconUrl);
+                actual.UnfurlLinks.Should().Be(expected.UnfurlLinks);
+                actual.UnfurlMedia.Should().Be(expected.UnfurlMedia);
+                actual.Username.Should().Be(expected.Username);
+                actual.Text.Should().Be(expected.Text);
+                actual.Blocks.Should().BeEquivalentTo(expected.Blocks);
+            }
         }
     }
 }
