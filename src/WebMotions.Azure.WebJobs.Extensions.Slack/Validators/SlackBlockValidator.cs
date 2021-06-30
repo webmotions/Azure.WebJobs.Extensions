@@ -29,7 +29,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators
             }
 
             var validator = (IValidator)Activator.CreateInstance(validatorType);
-            return validator.Validate(element);
+            return validator.Validate(new ValidationContext<object>(element));
         }
     }
 }
