@@ -12,7 +12,7 @@ namespace SlackFunctionApp
     {
         [FunctionName("SlackFunctionAppSample")]
         public async Task Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req,
             [Slack(WebHookUrl = "https://hooks.slack.com/services/XXXXXXXX/XXXXXXXXXX/XXXXXXXXX",
                   Channel = "#devtest",
                   Username = "AzureFunctionBot")] IAsyncCollector<SlackMessage> messages,
