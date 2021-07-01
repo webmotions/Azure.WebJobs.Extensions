@@ -10,11 +10,13 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
         /// <summary>
         /// Gets or sets the WebHook url
         /// </summary>
+        [AutoResolve]
         public string WebHookUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the Slack API key
         /// </summary>
+        [AutoResolve]
         public string ApiKey { get; set; }
 
         /// <summary>
