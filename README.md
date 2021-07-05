@@ -4,7 +4,7 @@ The Azure WebJobs Extensions is a project that includes various binding extensio
 
 | Master        | Dev           |
 | ------------- |---------------|
-| [![Build Status](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_apis/build/status/webmotions.Azure.WebJobs.Extensions?branchName=master)](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_build/latest?definitionId=6&branchName=master) | [![Build Status](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_apis/build/status/webmotions.Azure.WebJobs.Extensions?branchName=master)](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_build/latest?definitionId=6&branchName=dev) |
+| [![Build Status](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_apis/build/status/webmotions.Azure.WebJobs.Extensions?branchName=master)](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_build/latest?definitionId=6&branchName=master) | [![Build Status](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_apis/build/status/webmotions.Azure.WebJobs.Extensions?branchName=dev)](https://dev.azure.com/webmotions/Azure%20WebJobs%20Extensions/_build/latest?branchName=dev) |
 
 ## Extensions
 
@@ -33,8 +33,7 @@ using WebMotions.Azure.WebJobs.Extensions.Slack;
 [FunctionName("YourFunction")]
 public async Task Run(
 	[HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req,
-	[Slack(WebHookUrl = "https://hooks.slack.com/services/XXXXXXXX/XXXXXXXXXX/XXXXXXXXX", 
-		  Channel = "#general")] IAsyncCollector<SlackMessage> messages,
+	[Slack(WebHookUrl = "https://hooks.slack.com/services/XXXXXXXX/XXXXXXXXXX/XXXXXXXXX")] IAsyncCollector<SlackMessage> messages,
 	ILogger logger)
 {
 	var message = new SlackMessage();

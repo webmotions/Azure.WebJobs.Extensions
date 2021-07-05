@@ -6,9 +6,7 @@ trigger:
     - release/*
   paths:
     exclude:
-    - '*.md'
-    - '**/*.md'
-    - '**/*.ps1'
+    - README.md
 
 pr:
   branches:
@@ -18,9 +16,7 @@ pr:
     - release/*
   paths:
     exclude:
-    - '*.md'
-    - '**/*.md'
-    - '**/*.ps1'
+    - README.md
 
 pool:
   vmImage: 'ubuntu-latest'
