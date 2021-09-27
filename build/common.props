@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
     <!-- Extensions can have independent versions and only incremented when released -->
-    <Version>1.2.0$(VersionSuffix)</Version>
-    <SlackVersion>1.2.0$(VersionSuffix)</SlackVersion>
+    <Version>1.2.1$(VersionSuffix)</Version>
+    <SlackVersion>1.2.1$(VersionSuffix)</SlackVersion>
 
     <CommitHash Condition="$(CommitHash) == ''">N/A</CommitHash>
     <InformationalVersion>$(Version) Commit hash: $(CommitHash)</InformationalVersion>

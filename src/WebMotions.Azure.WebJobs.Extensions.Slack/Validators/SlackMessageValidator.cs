@@ -22,8 +22,9 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators
                            x is SlackContextBlock ||
                            x is SlackDividerBlock ||
                            x is SlackFileBlock ||
-                           x is SlackInputBlock ||
                            x is SlackHeaderBlock ||
+                           x is SlackImageBlock ||
+                           x is SlackInputBlock ||
                            x is SlackSectionBlock)
                 .WithMessage("Requires a block element");
             RuleFor(x => x).Custom((message, context) =>
