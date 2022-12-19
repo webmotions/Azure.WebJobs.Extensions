@@ -15,6 +15,10 @@ This extension lives in the WebMotions.Azure.WebJobs.Extensions.Slack package. G
 the app settings/environment variable `AzureWebJobsSlackWebHookUrl`. You can also use an API Key, by using the binding variable `ApiKey` or the app settings/environment variable
 `AzureWebJobsSlackWebApiKey`. Other options are available either through the binding attribute or directly in the `SlackMessage` class.
 
+![sample1][sample1]
+
+![sample2][sample2]
+
 #### Installation
 
 Official packages are available on [NuGet](https://www.nuget.org/packages/WebMotions.Azure.WebJobs.Extensions.Slack).
@@ -59,3 +63,6 @@ Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+[sample1]: ./docs/sample01.png "Sample 1"
+[sample2]: ./docs/sample02.png "Sample 2"
