@@ -5,7 +5,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
 {
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
     [Binding]
-    public sealed class SlackAttribute : Attribute
+    public class SlackAttribute : Attribute
     {
         /// <summary>
         /// Gets or sets the WebHook url
