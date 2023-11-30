@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
     <!-- Extensions can have independent versions and only incremented when released -->
-    <Version>1.3.0$(VersionSuffix)</Version>
-    <SlackVersion>1.3.0$(VersionSuffix)</SlackVersion>
+    <Version>1.4.0$(VersionSuffix)</Version>
+    <SlackVersion>1.4.0$(VersionSuffix)</SlackVersion>
 
     <CommitHash Condition="$(CommitHash) == ''">N/A</CommitHash>
     <InformationalVersion>$(Version) Commit hash: $(CommitHash)</InformationalVersion>
@@ -21,6 +21,6 @@
 
   <!-- Source link-->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
