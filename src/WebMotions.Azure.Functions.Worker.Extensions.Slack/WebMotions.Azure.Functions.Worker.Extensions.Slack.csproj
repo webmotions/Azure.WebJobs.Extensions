@@ -8,12 +8,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Abstractions" Version="1.3.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.7" OutputItemType="Analyzer" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.13.1" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="2.51.0" />
   </ItemGroup>
 
   <ItemGroup>
-	<WebJobsExtension Include="WebMotions.Azure.WebJobs.Extensions.Slack" Version="2.0.0" />
+    <ProjectReference Include="..\WebMotions.Azure.WebJobs.Extensions.Slack.Shared\WebMotions.Azure.WebJobs.Extensions.Slack.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<WebJobsExtension Include="WebMotions.Azure.WebJobs.Extensions.Slack" Version="1.2.2-devlocal" />
   </ItemGroup>
 
 </Project>

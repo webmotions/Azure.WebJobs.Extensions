@@ -8,6 +8,8 @@
     <Title>WebMotions Azure WebJobs Slack Extension</Title>
     <PackageDescription>A Slack binding that allows you to easily send rich slack messages after your job functions complete.</PackageDescription>
     <PackageTags>Slack;Azure WebJobs</PackageTags>
+	  <GenerateFunctionsExtensionsMetadata>true</GenerateFunctionsExtensionsMetadata>
+	  
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +19,14 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebMotions.Azure.WebJobs.Extensions.Slack.Shared\WebMotions.Azure.WebJobs.Extensions.Slack.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Bindings;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Converters;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Configs
