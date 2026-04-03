@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/build/">
+    <File Path="build/common.props" />
+    <File Path="build/SetEnvironmentVariables.ps1" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/SlackFunctionApp/SlackFunctionApp.csproj" />
+  </Folder>
+  <Folder Name="/solution items/">
+    <File Path="azure-pipeline.yaml" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/WebMotions.Azure.WebJobs.Extensions.Slack.Tests/WebMotions.Azure.WebJobs.Extensions.Slack.Tests.csproj" />
+  </Folder>
+  <Project Path="src/WebMotions.Azure.Functions.Worker.Extensions.Slack/WebMotions.Azure.Functions.Worker.Extensions.Slack.csproj" />
+  <Project Path="src/WebMotions.Azure.WebJobs.Extensions.Slack/WebMotions.Azure.WebJobs.Extensions.Slack.csproj" />
+</Solution>

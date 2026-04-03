@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMotions.Azure.WebJobs.Extensions.Slack", "src\WebMotions.Azure.WebJobs.Extensions.Slack\WebMotions.Azure.WebJobs.Extensions.Slack.csproj", "{D99BEF5A-9258-494D-BD4D-D6FDE31D12C3}"
 EndProject
@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{E01047CB
 		build\SetEnvironmentVariables.ps1 = build\SetEnvironmentVariables.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMotions.Azure.Functions.Worker.Extensions.Slack", "src\WebMotions.Azure.Functions.Worker.Extensions.Slack\WebMotions.Azure.Functions.Worker.Extensions.Slack.csproj", "{AD1D15F1-ECC9-45FC-83D5-75E06E9CE928}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E08CF21-49DF-426C-B9F5-C6C3A7AE967A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD1D15F1-ECC9-45FC-83D5-75E06E9CE928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1D15F1-ECC9-45FC-83D5-75E06E9CE928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1D15F1-ECC9-45FC-83D5-75E06E9CE928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1D15F1-ECC9-45FC-83D5-75E06E9CE928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

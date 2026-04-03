@@ -10,7 +10,7 @@
     <Company>WebMotions</Company>
     <Product>WebMotions Azure WebJobs SDK Extensions</Product>
     <RepositoryUrl>https://github.com/webmotions/Azure.WebJobs.Extensions</RepositoryUrl>
-    <Copyright>WebMotions - 2020</Copyright>
+    <Copyright>WebMotions - 2026</Copyright>
     
     <!-- Source link-->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -21,6 +21,6 @@
 
   <!-- Source link-->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.201" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
