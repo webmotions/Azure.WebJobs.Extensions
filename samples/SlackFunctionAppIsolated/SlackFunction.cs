@@ -2,7 +2,7 @@
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models;
+using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models;
 
 namespace SlackFunctionAppIsolated;
 

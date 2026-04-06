@@ -1,8 +1,8 @@
 ﻿using System;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.Blocks;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.Objects;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Blocks;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace SlackFunctionApp
 {

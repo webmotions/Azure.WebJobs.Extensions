@@ -16,17 +16,10 @@
     <PackageReference Include="FluentValidation" Version="10.2.3" />
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.45" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.5" />
+	<!--Azure functions host still runs on .NET 8. Once it runs on .NET 10, update this. -->
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\WebMotions.Azure.WebJobs.Extensions.Slack.Shared\WebMotions.Azure.WebJobs.Extensions.Slack.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Converters\" />
   </ItemGroup>
 
 </Project>

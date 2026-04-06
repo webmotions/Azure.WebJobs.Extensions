@@ -11,14 +11,11 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.7" OutputItemType="Analyzer" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.13.1" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="2.51.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebMotions.Azure.WebJobs.Extensions.Slack.Shared\WebMotions.Azure.WebJobs.Extensions.Slack.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-	<WebJobsExtension Include="WebMotions.Azure.WebJobs.Extensions.Slack" Version="1.2.2-devlocal" />
+	<WebJobsExtension Include="WebMotions.Azure.WebJobs.Extensions.Slack" Version="1.2.4-devlocal" />
   </ItemGroup>
 
 	<!-- required for the webjobs extension to be registred. -->

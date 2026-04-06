@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack
 {

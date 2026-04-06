@@ -15,6 +15,5 @@
     <Project Path="tests/WebMotions.Azure.WebJobs.Extensions.Slack.Tests/WebMotions.Azure.WebJobs.Extensions.Slack.Tests.csproj" />
   </Folder>
   <Project Path="src/WebMotions.Azure.Functions.Worker.Extensions.Slack/WebMotions.Azure.Functions.Worker.Extensions.Slack.csproj" />
-  <Project Path="src/WebMotions.Azure.WebJobs.Extensions.Slack.Shared/WebMotions.Azure.WebJobs.Extensions.Slack.Shared.csproj" Id="62e0b971-848e-4b78-b100-b7b4ac348f38" />
   <Project Path="src/WebMotions.Azure.WebJobs.Extensions.Slack/WebMotions.Azure.WebJobs.Extensions.Slack.csproj" />
 </Solution>

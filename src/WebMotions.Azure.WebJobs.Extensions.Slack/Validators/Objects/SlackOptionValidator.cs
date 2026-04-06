@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.Objects;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.Objects
 {

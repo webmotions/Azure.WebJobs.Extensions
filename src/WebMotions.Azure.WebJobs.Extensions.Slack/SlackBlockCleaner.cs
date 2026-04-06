@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.Blocks;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Blocks;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack
 {

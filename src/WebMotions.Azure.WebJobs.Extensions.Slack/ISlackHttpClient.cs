@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models;
+using SlackMessage = WebMotions.Azure.WebJobs.Extensions.Slack.Models.SlackMessage;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack
 {
