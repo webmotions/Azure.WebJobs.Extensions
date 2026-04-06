@@ -21,4 +21,15 @@
 	<WebJobsExtension Include="WebMotions.Azure.WebJobs.Extensions.Slack" Version="1.2.2-devlocal" />
   </ItemGroup>
 
+	<!-- required for the webjobs extension to be registred. -->
+  <Target Name="AddWebJobsExtensionInformation" BeforeTargets="GetAssemblyAttributes" Condition="'@(WebJobsExtension)' != ''">
+		<ItemGroup>
+			<_ExtensionInformationAttribute Include="@(WebJobsExtension->'Microsoft.Azure.Functions.Worker.Extensions.Abstractions.ExtensionInformationAttribute')">
+				<_Parameter1>%(WebJobsExtension.Identity)</_Parameter1>
+				<_Parameter2>%(WebJobsExtension.Version)</_Parameter2>
+			</_ExtensionInformationAttribute>
+			<AssemblyAttribute Include="@(_ExtensionInformationAttribute)" RemoveMetadata="Version" />
+		</ItemGroup>
+	</Target>
+
 </Project>

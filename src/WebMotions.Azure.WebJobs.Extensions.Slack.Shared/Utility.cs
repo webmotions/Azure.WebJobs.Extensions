@@ -6,9 +6,9 @@ using System.Runtime.Serialization;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared
 {
-    internal static class Utility
+    public static class Utility
     {
-        internal static string FirstOrDefault(params string[] values)
+        public static string FirstOrDefault(params string[] values)
         {
             return values.FirstOrDefault(v => !string.IsNullOrEmpty(v));
         }
@@ -18,7 +18,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared
         /// </summary>
         /// <param name="enumType">The type of the enum</param>
         /// <returns>The mapping between the enum member value and the metadata class</returns>
-        internal static IDictionary<string, Type> GetEnumMemberValueAndMetadata(Type enumType)
+        public static IDictionary<string, Type> GetEnumMemberValueAndMetadata(Type enumType)
         {
             var ret = new Dictionary<string, Type>();
             var memInfo = enumType.GetMembers();

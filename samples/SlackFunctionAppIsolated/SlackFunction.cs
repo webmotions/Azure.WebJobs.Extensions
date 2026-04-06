@@ -19,7 +19,7 @@ public class SlackFunction
     [SlackOutput(WebHookUrl = "https://hooks.slack.com/services/XXXXXXXX/XXXXXXXXXX/XXXXXXXXX",
         Channel = "#devtest",
         Username = "AzureFunctionBot")]
-    public Task Run([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req)
+    public Task<IList<SlackMessage>> Run([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req)
     {
         _logger.LogInformation("Running slack app");
 
@@ -32,6 +32,6 @@ public class SlackFunction
         var slackMessageSample2 = samples.GetSample2();
         messages.Add(slackMessageSample2);
 
-        return Task.FromResult(messages);
+        return Task.FromResult<IList<SlackMessage>>(messages);
     }
 }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Validators;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Bindings
@@ -30,10 +30,10 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Bindings
 
         public Task AddAsync(SlackMessage message, CancellationToken cancellationToken = new CancellationToken())
         {
-            var channel = Utility.FirstOrDefault(_context.Channel, message.Channel);
-            var iconUrl = Utility.FirstOrDefault(_context.IconUrl, message.IconUrl);
-            var iconEmoji = Utility.FirstOrDefault(_context.IconEmoji, message.IconEmoji);
-            var userName = Utility.FirstOrDefault(_context.UserName, message.Username);
+            var channel = Shared.Utility.FirstOrDefault(_context.Channel, message.Channel);
+            var iconUrl = Shared.Utility.FirstOrDefault(_context.IconUrl, message.IconUrl);
+            var iconEmoji = Shared.Utility.FirstOrDefault(_context.IconEmoji, message.IconEmoji);
+            var userName = Shared.Utility.FirstOrDefault(_context.UserName, message.Username);
 
             if (!string.IsNullOrWhiteSpace(message.Username) && message.AsUser)
             {

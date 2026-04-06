@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Microsoft.VisualBasic;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Config;
 

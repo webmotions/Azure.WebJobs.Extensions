@@ -8,11 +8,11 @@ using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Converters
 {
-    internal static class SlackConverterHelpers
+    public static class SlackConverterHelpers
     {
         internal static readonly IDictionary<string, Type> TextMapping = Utility.GetEnumMemberValueAndMetadata(typeof(SlackTextType));
 
-        internal static object? GetBlockElement(string elementTypeValue, JObject item)
+        public static object? GetBlockElement(string elementTypeValue, JObject item)
         {
             if (TextMapping.TryGetValue(elementTypeValue, out var textClassType))
             {
@@ -42,7 +42,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Converters
             };
         }
 
-        internal static object? GetBlock(string blockTypeValue, JObject item)
+        public static object? GetBlock(string blockTypeValue, JObject item)
         {
             return blockTypeValue switch
             {

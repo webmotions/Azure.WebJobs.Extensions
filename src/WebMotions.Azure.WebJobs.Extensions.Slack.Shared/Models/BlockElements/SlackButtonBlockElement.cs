@@ -12,7 +12,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements
         /// <summary>
         /// Gets the type of the block element.
         /// </summary>
-        public string Type { get; } = "button";
+        public string Type => "button";
 
         /// <summary>
         /// Gets or sets the text that defines the button's text.
@@ -20,7 +20,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements
         /// <remarks>
         /// Can only be plain text. Maximum length is 75 characters.
         /// </remarks>
-        public SlackPlainText Text { get; set; }
+        public SlackPlainText? Text { get; set; }
 
         /// <summary>
         /// Gets the identifier for the action.
@@ -29,7 +29,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public string ActionId { get; set; }
+        public string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the URL to load in the user's browser when the button is clicked.
@@ -37,7 +37,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements
         /// <remarks>
         /// Maximum length is 3000 characters.
         /// </remarks>
-        public Uri Url { get; set; }
+        public Uri? Url { get; set; }
 
         /// <summary>
         /// Gets or sets the value to send along with the interaction payload
@@ -45,7 +45,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements
         /// <remarks>
         /// Maximum length is 2000 characters.
         /// </remarks>
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
         /// <summary>
         /// Gets or sets the button alternate visual color scheme. Defaults to the default style
@@ -55,6 +55,6 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements
         /// <summary>
         /// Gets or sets a <see cref="SlackConfirmation"/> that defines an optional confirmation dialog after the button is clicked.
         /// </summary>
-        public SlackConfirmation Confirm { get; set; }
+        public SlackConfirmation? Confirm { get; set; }
     }
 }

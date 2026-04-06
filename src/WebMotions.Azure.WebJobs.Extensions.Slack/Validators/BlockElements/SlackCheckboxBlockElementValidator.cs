@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Shared.Models.BlockElements;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
 {
