@@ -17,7 +17,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("block_id")]
-        public string BlockId { get; set; }
+        public string? BlockId { get; set; }
 
         /// <summary>
         /// A collection of interactive element objects - buttons, select menus, overflow menus, or date pickers. 

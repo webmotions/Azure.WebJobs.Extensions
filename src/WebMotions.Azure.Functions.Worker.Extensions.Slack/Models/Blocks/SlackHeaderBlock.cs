@@ -21,7 +21,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// Maximum length is 150 characters. 
         /// </remarks>
         [JsonConverter(typeof(SlackTextConverter))]
-        public SlackPlainText Text { get; set; }
+        public SlackPlainText? Text { get; set; }
 
         /// <summary>
         /// Gets or sets the unique identifier for the block.
@@ -30,6 +30,6 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("block_id")]
-        public string BlockId { get; set; }
+        public string? BlockId { get; set; }
     }
 }

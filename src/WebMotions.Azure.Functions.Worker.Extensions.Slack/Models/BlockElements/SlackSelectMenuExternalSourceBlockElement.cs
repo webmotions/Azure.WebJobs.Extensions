@@ -17,12 +17,12 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public override string ActionId { get; set; }
+        public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the option that exactly matches one of the options within the <see cref="SlackOption"/> or <see cref="SlackOptionGroup"/> loaded from the external data source.
         /// </summary>
         [JsonProperty("initial_option")]
-        public SlackOption InitialOption { get; set; }
+        public SlackOption? InitialOption { get; set; }
     }
 }

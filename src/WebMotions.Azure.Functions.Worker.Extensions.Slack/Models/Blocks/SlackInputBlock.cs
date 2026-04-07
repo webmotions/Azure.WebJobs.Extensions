@@ -22,7 +22,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("block_id")]
-        public string BlockId { get; set; }
+        public string? BlockId { get; set; }
 
         /// <summary>
         /// Gets or sets a label that appears above an input element
@@ -30,13 +30,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum length is 2000 characters.
         /// </remarks>
-        public SlackPlainText Label { get; set; }
+        public SlackPlainText? Label { get; set; }
 
         /// <summary>
         /// Gets or sets the type of element as input. Can be <see cref="SlackPlainText"/>, a select menu, a multi-select menu, or a <see cref="SlackDatePickerBlockElement"/>.
         /// </summary>
         [Newtonsoft.Json.JsonConverter(typeof(SlackBlockElementConverter))]
-        public object Element { get; set; }
+        public object? Element { get; set; }
 
         /// <summary>
         /// Gets or sets an optional hint that appears below an input element in a lighter grey.
@@ -44,7 +44,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum length is 2000 characters.
         /// </remarks>
-        public SlackPlainText Hint { get; set; }
+        public SlackPlainText? Hint { get; set; }
 
         /// <summary>
         /// Gets or sets whether the input element may be empty when a user submits the modal.

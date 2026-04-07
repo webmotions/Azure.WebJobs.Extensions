@@ -10,7 +10,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
         {
             RuleFor(x => x.ActionId).NotEmpty().MaximumLength(255);
             RuleFor(x => x.Options).NotEmpty();
-            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()).When(x => x.Confirm != null);
+            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()!).When(x => x.Confirm != null);
         }
     }
 }

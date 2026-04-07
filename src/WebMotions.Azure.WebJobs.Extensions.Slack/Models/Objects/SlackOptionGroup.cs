@@ -13,7 +13,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
         /// <remarks>
         /// Maximum length for the text is 75 characters.
         /// </remarks>
-        public SlackPlainText Label { get; set; }
+        public SlackPlainText? Label { get; set; }
 
         /// <summary>
         /// Gets a collection of option objects that belong to this specific group.

@@ -8,7 +8,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.Objects
         public SlackOptionGroupValidator()
         {
             RuleFor(x => x.Label)
-                .Must(x => x != null && x.Text.Length <= 75)
+                .Must(x => x?.Text != null && x.Text.Length <= 75)
                 .WithMessage("Label cannot be empty and the length should be 75 characters or less");
             RuleFor(x => x.Options)
                 .Must(x => x != null && x.Count <= 100)

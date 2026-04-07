@@ -18,7 +18,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public override string ActionId { get; set; }
+        public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of <see cref="SlackOption"/> or <see cref="SlackOptionGroup"/> objects that exactly match one or more of the options.

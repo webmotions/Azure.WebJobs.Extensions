@@ -7,18 +7,18 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <summary>
         /// Gets the type of the block.
         /// </summary>
-        public string Type { get; } = "image";
+        public string Type => "image";
 
         /// <summary>
         /// Gets or sets he URL of the image to be displayed.
         /// </summary>
         [JsonProperty("image_url")]
-        public Uri Url { get; set; }
+        public Uri? Url { get; set; }
 
         /// <summary>
         /// Gets or sets the plain-text summary of the image. This should not contain any markup.
         /// </summary>
         [JsonProperty("alt_text")]
-        public string AlternateText { get; set; }
+        public string? AlternateText { get; set; }
     }
 }

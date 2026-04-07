@@ -8,11 +8,11 @@
         /// <summary>
         /// Gets or sets the ApiKey
         /// </summary>
-        public string ApiKey { get; set; }
+        public string? ApiKey { get; set; }
 
         /// <summary>
         /// Gets or sets the Webhook URL
         /// </summary>
-        public string WebHookUrl { get; set; }
+        public string? WebHookUrl { get; set; }
     }
 }

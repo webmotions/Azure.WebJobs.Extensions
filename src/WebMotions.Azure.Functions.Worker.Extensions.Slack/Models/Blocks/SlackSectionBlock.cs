@@ -21,7 +21,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("block_id")]
-        public string BlockId { get; set; }
+        public string? BlockId { get; set; }
 
         /// <summary>
         /// Gets or sets the text for the block
@@ -29,8 +29,8 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum length is 3000 characters. 
         /// </remarks>
-        [Newtonsoft.Json.JsonConverter(typeof(SlackTextConverter))]
-        public SlackText Text { get; set; }
+        [JsonConverter(typeof(SlackTextConverter))]
+        public SlackText? Text { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of <see cref="SlackPlainText"/> or <see cref="SlackMarkdownText"/> objects text objects included that will be rendered in a compact format that allows for 2 columns of side-by-side text. 
@@ -38,13 +38,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum number of items is 10. Maximum length for the text in each item is 2000 characters.
         /// </remarks>
-        [Newtonsoft.Json.JsonConverter(typeof(SlackTextConverter))]
+        [JsonConverter(typeof(SlackTextConverter))]
         public List<SlackText> Fields { get; set; } = new List<SlackText>();
 
         /// <summary>
         /// Gets or sets a block element to be display within the block
         /// </summary>
-        [Newtonsoft.Json.JsonConverter(typeof(SlackBlockElementConverter))]
-        public object Accessory { get; set; }
+        [JsonConverter(typeof(SlackBlockElementConverter))]
+        public object? Accessory { get; set; }
     }
 }

@@ -19,13 +19,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("block_id")]
-        public string BlockId { get; set; }
+        public string? BlockId { get; set; }
 
         /// <summary>
         /// Gets or sets the external unique ID.
         /// </summary>
         [JsonProperty("external_id")]
-        public string ExternalId { get; set; }
+        public string? ExternalId { get; set; }
 
         /// <summary>
         /// Gets or sets the source of the file

@@ -13,7 +13,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <summary>
         /// Gets the type of the block element.
         /// </summary>
-        public string Type { get; } = "datepicker";
+        public string Type => "datepicker";
 
         /// <summary>
         /// Gets or sets the identifier for the action.
@@ -22,7 +22,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public string ActionId { get; set; }
+        public string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the placeholder text. 
@@ -30,7 +30,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Maximum length is 150 characters.
         /// </remarks>
-        public SlackPlainText Placeholder { get; set; }
+        public SlackPlainText? Placeholder { get; set; }
 
         /// <summary>
         /// Gets or sets the placeholder text shown on the datepicker. 
@@ -42,6 +42,6 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <summary>
         /// Gets or sets a <see cref="SlackConfirmation"/> that defines an optional confirmation dialog after the button is clicked.
         /// </summary>
-        public SlackConfirmation Confirm { get; set; }
+        public SlackConfirmation? Confirm { get; set; }
     }
 }

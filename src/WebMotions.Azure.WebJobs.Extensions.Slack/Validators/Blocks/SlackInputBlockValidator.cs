@@ -10,7 +10,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.Blocks
         public SlackInputBlockValidator()
         {
             RuleFor(x => x.Label)
-                .Must(x => x != null && x.Text.Length <= 2000).WithMessage("Label cannot be null and the maximum length must be 2000");
+                .Must(x => x?.Text != null && x.Text.Length <= 2000).WithMessage("Label cannot be null and the maximum length must be 2000");
             RuleFor(x => x.Element)
                 .Must(x => x != null && (x is SlackPlainText || x is SlackDatePickerBlockElement || x is SlackMenuBlockElementBase))
                 .WithMessage("Element cannot be null and must of the type plaintext, datepicker, select or multi-select");

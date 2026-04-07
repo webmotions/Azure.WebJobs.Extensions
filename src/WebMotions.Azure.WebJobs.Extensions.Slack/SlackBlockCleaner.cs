@@ -39,7 +39,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
                         }
                         else if (element is SlackMultiSelectMenuExternalSourceBlockElement multiSelectMenuExternalSourceBlockElement)
                         {
-                            if (multiSelectMenuExternalSourceBlockElement?.InitialOptions.Count == 0)
+                            if (multiSelectMenuExternalSourceBlockElement.InitialOptions?.Count == 0)
                             {
                                 multiSelectMenuExternalSourceBlockElement.InitialOptions = null;
                             }
@@ -57,7 +57,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
 
                         if (element is SlackMultiSelectMenuExternalSourceBlockElement multiSelectMenuExternalSourceBlockElement)
                         {
-                            if (multiSelectMenuExternalSourceBlockElement?.InitialOptions.Count == 0)
+                            if (multiSelectMenuExternalSourceBlockElement.InitialOptions?.Count == 0)
                             {
                                 multiSelectMenuExternalSourceBlockElement.InitialOptions = null;
                             }
@@ -80,7 +80,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
                     }
                     else if (element is SlackMultiSelectMenuExternalSourceBlockElement multiSelectMenuExternalSourceBlockElement)
                     {
-                        if (multiSelectMenuExternalSourceBlockElement?.InitialOptions.Count == 0)
+                        if (multiSelectMenuExternalSourceBlockElement.InitialOptions?.Count == 0)
                         {
                             multiSelectMenuExternalSourceBlockElement.InitialOptions = null;
                         }
@@ -107,7 +107,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
                     }
                     else if (element is SlackMultiSelectMenuExternalSourceBlockElement multiSelectMenuExternalSourceBlockElement)
                     {
-                        if (multiSelectMenuExternalSourceBlockElement?.InitialOptions.Count == 0)
+                        if (multiSelectMenuExternalSourceBlockElement.InitialOptions?.Count == 0)
                         {
                             multiSelectMenuExternalSourceBlockElement.InitialOptions = null;
                         }

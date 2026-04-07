@@ -12,7 +12,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
             RuleFor(x => x.Options)
                 .Must(x => x != null && x.Count <= 5 && x.Count >= 2)
                 .WithMessage("Collection cannot be null and the maximum number of options is 5, minimum is 2.");
-            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()).When(x => x.Confirm != null);
+            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()!).When(x => x.Confirm != null);
         }
     }
 }

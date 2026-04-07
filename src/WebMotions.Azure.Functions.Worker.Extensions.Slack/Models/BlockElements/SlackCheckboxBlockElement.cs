@@ -11,7 +11,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <summary>
         /// Gets the type of the block element.
         /// </summary>
-        public string Type { get; } = "checkboxes";
+        public string Type => "checkboxes";
 
         /// <summary>
         /// Gets or sets the identifier for the action.
@@ -20,7 +20,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public string ActionId { get; set; }
+        public string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of <see cref="SlackOption"/>
@@ -34,11 +34,11 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Have to be <see cref="SlackOption"/> that are included in the <see cref="Options"/> collection
         /// </remarks>
         [JsonProperty("initial_options")]
-        public List<SlackOption> SelectedOptions { get; set; } = new List<SlackOption>();
+        public List<SlackOption>? SelectedOptions { get; set; } = new List<SlackOption>();
 
         /// <summary>
         /// Gets or sets a <see cref="SlackConfirmation"/> that defines an optional confirmation dialog after the button is clicked.
         /// </summary>
-        public SlackConfirmation Confirm { get; set; }
+        public SlackConfirmation? Confirm { get; set; }
     }
 }

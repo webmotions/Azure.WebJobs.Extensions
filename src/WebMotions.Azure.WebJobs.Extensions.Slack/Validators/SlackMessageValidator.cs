@@ -10,11 +10,11 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators
         {
             RuleFor(x => x.Text).NotEmpty().When(x => x.Blocks.Count == 0);
             RuleFor(x => x.Channel)
-                .Must(x => x.StartsWith("#") || x.StartsWith("@"))
+                .Must(x => x!.StartsWith("#") || x.StartsWith("@"))
                 .WithMessage("A channel must start with # for channels or @ for users.")
                 .When(x => !string.IsNullOrWhiteSpace(x.Channel));
             RuleFor(x => x.IconEmoji)
-                .Must(x => x.StartsWith(":") && x.EndsWith(":"))
+                .Must(x => x!.StartsWith(":") && x.EndsWith(":"))
                 .WithMessage("An icon emoji must start and end with ':'.")
                 .When(x => !string.IsNullOrWhiteSpace(x.IconEmoji));
             RuleForEach(x => x.Blocks)

@@ -8,7 +8,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <summary>
         /// Gets the type of the block element.
         /// </summary>
-        public string Type { get; } = "plain_text_input";
+        public string Type => "plain_text_input";
 
         /// <summary>
         /// Gets or sets the identifier for the action.
@@ -17,7 +17,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public string ActionId { get; set; }
+        public string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the placeholder text. 
@@ -25,13 +25,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Maximum length is 150 characters.
         /// </remarks>
-        public SlackPlainText Placeholder { get; set; }
+        public SlackPlainText? Placeholder { get; set; }
 
         /// <summary>
         /// Gets or sets the initial value in the plain-text input when it is loaded. 
         /// </summary>
         [JsonProperty("initial_value")]
-        public string InitialValue { get; set; }
+        public string? InitialValue { get; set; }
 
         /// <summary>
         /// Gets or sets whether the input will be a single line (false) or a larger textarea (true).

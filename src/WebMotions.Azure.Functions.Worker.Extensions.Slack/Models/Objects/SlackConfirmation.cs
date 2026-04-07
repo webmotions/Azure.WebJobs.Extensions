@@ -23,7 +23,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects
         /// Maximum length is 300 characters. Use <see cref="SlackPlainText"/> or <see cref="SlackMarkdownText"/>
         /// </remarks>
         [JsonConverter(typeof(SlackTextConverter))]
-        public SlackText Text { get; set; }
+        public SlackText? Text { get; set; }
 
         /// <summary>
         /// Gets or sets the text of the button that confirms the action.
@@ -31,7 +31,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects
         /// <remarks>
         /// Maximum length is 30 characters.
         /// </remarks>
-        public SlackPlainText Confirm { get; set; }
+        public SlackPlainText? Confirm { get; set; }
 
         /// <summary>
         /// Gets or sets the text of the button that cancels the action
@@ -39,7 +39,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects
         /// <remarks>
         /// Maximum length is 30 characters.
         /// </remarks>
-        public SlackPlainText Deny { get; set; }
+        public SlackPlainText? Deny { get; set; }
 
         /// <summary>
         /// Gets or sets the color scheme applied to the confirm button

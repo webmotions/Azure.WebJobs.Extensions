@@ -10,12 +10,12 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
     /// </summary>
     public class SlackBlockElementConverter : JsonConverter
     {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.StartObject)
             {
@@ -30,7 +30,12 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
                 while (reader.TokenType != JsonToken.EndArray)
                 {
                     var item = JObject.Load(reader);
-                    ret.Add(GetBlockElement(item));
+                    var blockElement = GetBlockElement(item);
+                    if (blockElement != null)
+                    {
+                        ret.Add(blockElement);
+                    }
+
                     reader.Read();
                 }
 
@@ -40,14 +45,19 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
             return null;
         }
 
-        private object GetBlockElement(JObject item)
+        private object? GetBlockElement(JObject item)
         {
-            if (!item.TryGetValue("type", StringComparison.OrdinalIgnoreCase, out JToken blockElement))
+            if (!item.TryGetValue("type", StringComparison.OrdinalIgnoreCase, out JToken? blockElement))
             {
                 throw new JsonException("The type property was not found.");
             }
 
             var blockElementTypeValue = blockElement.Value<string>();
+            if (string.IsNullOrWhiteSpace(blockElementTypeValue))
+            {
+                throw new NullReferenceException($"{nameof(blockElementTypeValue)} is null or whitespace");
+            }
+
             return SlackConverterHelpers.GetBlockElement(blockElementTypeValue, item);
         }
 

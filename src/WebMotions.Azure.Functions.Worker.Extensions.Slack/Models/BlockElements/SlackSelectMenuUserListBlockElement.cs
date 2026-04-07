@@ -7,7 +7,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
     /// </summary>
     public class SlackSelectMenuUserListBlockElement : SlackMenuBlockElementBase
     {
-        public override string Type { get; } = "users_select";
+        public override string Type => "users_select";
 
         /// <summary>
         /// Gets or sets the identifier for the action.
@@ -16,12 +16,12 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public override string ActionId { get; set; }
+        public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the user ID of any valid user to be pre-selected when the menu loads.
         /// </summary>
         [JsonProperty("initial_user")]
-        public string InitialUser { get; set; }
+        public string? InitialUser { get; set; }
     }
 }

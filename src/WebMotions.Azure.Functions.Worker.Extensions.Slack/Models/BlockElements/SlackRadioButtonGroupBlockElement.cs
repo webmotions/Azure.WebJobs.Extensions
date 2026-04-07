@@ -11,7 +11,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <summary>
         /// Gets the type of the block element.
         /// </summary>
-        public string Type { get; } = "radio_buttons";
+        public string Type => "radio_buttons";
 
         /// <summary>
         /// Gets the identifier for the action. Defaults to rbtngrp_{NewGuid}
@@ -20,7 +20,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public string ActionId { get; set; }
+        public string? ActionId { get; set; }
 
         /// <summary>
         /// Gets a collection of <see cref="SlackOption"/>
@@ -32,11 +32,11 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// This option will be selected when the radio button group initially loads.
         /// </summary>
         [JsonProperty("initial_option")]
-        public SlackOption InitialOption { get; set; }
+        public SlackOption? InitialOption { get; set; }
 
         /// <summary>
         /// Gets or sets a <see cref="SlackConfirmation"/> that defines an optional confirmation dialog after the button is clicked.
         /// </summary>
-        public SlackConfirmation Confirm { get; set; }
+        public SlackConfirmation? Confirm { get; set; }
     }
 }

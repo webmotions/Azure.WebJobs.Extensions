@@ -2,7 +2,7 @@
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack;
 
-[AttributeUsage(AttributeTargets.Method)]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Property)]
 public sealed class SlackOutputAttribute : OutputBindingAttribute
 {
     /// <summary>

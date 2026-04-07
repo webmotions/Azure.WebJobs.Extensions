@@ -9,7 +9,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
         public SlackMultiSelectMenuExternalSourceBlockElementValidator()
         {
             Include(new SlackMenuBlockElementValidatorBase());
-            RuleFor(x => x.MaximumSelectedItems).Must(x => x.Value >= 1).When(x => x.MaximumSelectedItems.HasValue);
+            RuleFor(x => x.MaximumSelectedItems).Must(x => x!.Value >= 1).When(x => x.MaximumSelectedItems.HasValue);
             RuleForEach(x => x.InitialOptions)
                 .Must(x => x is SlackOption || x is SlackOptionGroup)
                 .When(x => x.InitialOptions != null);

@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models

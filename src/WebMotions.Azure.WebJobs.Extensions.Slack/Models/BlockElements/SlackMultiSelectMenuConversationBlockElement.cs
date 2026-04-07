@@ -9,7 +9,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
     /// </summary>
     public class SlackMultiSelectMenuConversationBlockElement : SlackMenuConversationBlockElementBase
     {
-        public override string Type { get; } = "multi_conversations_select";
+        public override string Type => "multi_conversations_select";
 
         /// <summary>
         /// Gets or sets the identifier for the action.
@@ -18,7 +18,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public override string ActionId { get; set; }
+        public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of one or more IDs of any valid conversations to be pre-selected when the menu loads.
@@ -29,7 +29,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <summary>
         /// Gets or sets a <see cref="SlackFilter"/> that reduces the list of available conversations using the specified criteria.
         /// </summary>
-        public SlackFilter Filter { get; set; }
+        public SlackFilter? Filter { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of items that can be selected in the menu

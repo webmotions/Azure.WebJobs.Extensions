@@ -6,12 +6,12 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters
 {
     public class SlackOptionsConverter : JsonConverter
     {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.StartObject)
             {
@@ -26,7 +26,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters
                 while (reader.TokenType != JsonToken.EndArray)
                 {
                     var item = JObject.Load(reader);
-                    ret.Add(GetOptionElement(item));
+
+                    var optionElement = GetOptionElement(item);
+                    if (optionElement != null)
+                    {
+                        ret.Add(optionElement);
+                    }
+
                     reader.Read();
                 }
 
@@ -36,14 +42,14 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters
             return null;
         }
 
-        private object GetOptionElement(JObject item)
+        private object? GetOptionElement(JObject item)
         {
-            if (item.TryGetValue("text", StringComparison.OrdinalIgnoreCase, out var _))
+            if (item.TryGetValue("text", StringComparison.OrdinalIgnoreCase, out _))
             {
                 return item.ToObject<SlackOption>();
             }
 
-            if (item.TryGetValue("label", StringComparison.OrdinalIgnoreCase, out var _))
+            if (item.TryGetValue("label", StringComparison.OrdinalIgnoreCase, out _))
             {
                 return item.ToObject<SlackOptionGroup>();
             }

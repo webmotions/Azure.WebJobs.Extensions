@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Validators;
-using SlackMessage = WebMotions.Azure.WebJobs.Extensions.Slack.Models.SlackMessage;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Bindings
 {

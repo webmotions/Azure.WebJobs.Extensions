@@ -12,6 +12,7 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="3.1.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.51.0" />
+	  <!-- Need to move to OTel. See https://github.com/microsoft/ApplicationInsights-dotnet/issues/3106#issuecomment-4050260290-->
     <!--<PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="2.50.0" />-->
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" Version="2.1.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.7" />

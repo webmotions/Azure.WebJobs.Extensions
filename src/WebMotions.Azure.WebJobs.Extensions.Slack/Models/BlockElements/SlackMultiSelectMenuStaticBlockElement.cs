@@ -8,7 +8,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
     /// </summary>
     public class SlackMultiSelectMenuStaticBlockElement : SlackMenuStaticBlockElementBase
     {
-        public override string Type { get; } = "multi_static_select";
+        public override string Type => "multi_static_select";
 
         /// <summary>
         /// Gets or sets the identifier for the action. Defaults to msms_{NewGuid}
@@ -17,7 +17,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public override string ActionId { get; set; }
+        public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of items that can be selected in the menu.

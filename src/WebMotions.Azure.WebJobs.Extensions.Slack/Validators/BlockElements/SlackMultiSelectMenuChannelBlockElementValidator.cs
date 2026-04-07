@@ -12,7 +12,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
                 .NotEmpty()
                 .Must(x => x.StartsWith("#"))
                 .WithMessage("The channel must start with #")
-                .When(x => x.InitialChannels.Count > 0);
+                .When(x => x.InitialChannels != null && x.InitialChannels.Count > 0);
         }
     }
 }

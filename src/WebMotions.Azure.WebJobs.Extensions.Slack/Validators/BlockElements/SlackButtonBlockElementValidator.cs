@@ -8,11 +8,11 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
     {
         public SlackButtonBlockElementValidator()
         {
-            RuleFor(x => x.Text.Text).NotEmpty().MaximumLength(75);
+            RuleFor(x => x.Text!.Text).NotEmpty().MaximumLength(75);
             RuleFor(x => x.ActionId).NotEmpty().MaximumLength(255);
-            RuleFor(x => x.Url.ToString()).MaximumLength(3000).When(x => x.Url != null);
+            RuleFor(x => x.Url!.ToString()).MaximumLength(3000).When(x => x.Url != null);
             RuleFor(x => x.Value).MaximumLength(2000);
-            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()).When(x => x.Confirm != null);
+            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()!).When(x => x.Confirm != null);
         }
     }
 }

@@ -10,8 +10,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters
     {
         internal static readonly IDictionary<string, Type> TextMapping = Utility.GetEnumMemberValueAndMetadata(typeof(SlackTextType));
 
-        public static object? GetBlockElement(string elementTypeValue, JObject item)
+        public static object? GetBlockElement(string? elementTypeValue, JObject item)
         {
+            if (string.IsNullOrWhiteSpace(elementTypeValue))
+            {
+                return null;
+            }
+
             if (TextMapping.TryGetValue(elementTypeValue, out var textClassType))
             {
                 return (SlackText)item.ToObject(textClassType)!;

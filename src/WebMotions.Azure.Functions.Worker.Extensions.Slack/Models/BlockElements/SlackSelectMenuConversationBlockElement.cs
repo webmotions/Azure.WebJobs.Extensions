@@ -7,7 +7,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
     /// </summary>
     public class SlackSelectMenuConversationBlockElement : SlackMenuConversationBlockElementBase
     {
-        public override string Type { get; } = "conversations_select";
+        public override string Type => "conversations_select";
 
         /// <summary>
         /// Gets or sets the identifier for the action.
@@ -16,13 +16,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
         [JsonProperty("action_id")]
-        public override string ActionId { get; set; }
+        public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of any valid conversation to be pre-selected when the menu loads. 
         /// </summary>
         [JsonProperty("initial_conversation")]
-        public string InitialConversation { get; set; }
+        public string? InitialConversation { get; set; }
 
         /// <summary>
         /// Gets or sets if the view_submission payload from the menu's parent view will contain a response_url. This response_url can be used for message responses.

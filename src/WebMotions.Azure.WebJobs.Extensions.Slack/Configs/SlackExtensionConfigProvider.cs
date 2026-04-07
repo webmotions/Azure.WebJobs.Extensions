@@ -62,14 +62,14 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Configs
             slackMessage.Username = GetValueOrDefault<string>(obj, "username");
             slackMessage.Text = GetValueOrDefault<string>(obj, "text");
 
-            if (obj.TryGetValue("unfurlLinks", StringComparison.OrdinalIgnoreCase, out JToken unfurlLinks))
+            if (obj.TryGetValue("unfurlLinks", StringComparison.OrdinalIgnoreCase, out JToken? unfurlLinks))
             {
                 slackMessage.UnfurlLinks = unfurlLinks.Value<bool>();
             }
 
             slackMessage.UnfurlMedia = GetValueOrDefault<bool>(obj, "unfurlMedia");
 
-            if (obj.TryGetValue("blocks", StringComparison.OrdinalIgnoreCase, out JToken blocksValue))
+            if (obj.TryGetValue("blocks", StringComparison.OrdinalIgnoreCase, out JToken? blocksValue))
             {
                 if (blocksValue.Type == JTokenType.Array)
                 {
@@ -118,12 +118,14 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Configs
 
         private static TValue GetValueOrDefault<TValue>(JObject messageObject, string propertyName)
         {
-            if (messageObject.TryGetValue(propertyName, StringComparison.OrdinalIgnoreCase, out JToken result))
+            if (messageObject.TryGetValue(propertyName, StringComparison.OrdinalIgnoreCase, out JToken? result))
             {
-                return result.Value<TValue>();
+                return result.Value<TValue>()!;
             }
 
+#pragma warning disable CS8603 // Possible null reference return.
             return default;
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         private static IEnumerable<object> GetBlocks(JArray blocksValue)
@@ -137,12 +139,18 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Configs
                 }
 
                 var block = (JObject)blockObject;
-                if (!block.TryGetValue("type", out JToken typeValue))
+                if (!block.TryGetValue("type", out JToken? typeValue))
                 {
                     continue;
                 }
 
                 var blockType = typeValue.Value<string>();
+
+                if (string.IsNullOrWhiteSpace(blockType))
+                {
+                    continue;
+                }
+
                 var concreteBlock = SlackConverterHelpers.GetBlock(blockType, block);
                 if (concreteBlock != null)
                 {

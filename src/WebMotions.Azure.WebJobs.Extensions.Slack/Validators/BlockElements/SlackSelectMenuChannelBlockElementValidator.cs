@@ -9,7 +9,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
         {
             Include(new SlackMenuBlockElementValidatorBase());
             RuleFor(x => x.InitialChannel)
-                .Must(x => x.StartsWith("#")).WithMessage("The channel must start with #")
+                .Must(x => x!.StartsWith("#")).WithMessage("The channel must start with #")
                 .When(x => !string.IsNullOrWhiteSpace(x.InitialChannel));
         }
     }

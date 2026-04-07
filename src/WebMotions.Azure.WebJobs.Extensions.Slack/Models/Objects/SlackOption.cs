@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Converters;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
@@ -14,8 +15,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
         /// <remarks>
         /// Overflow, select, and multi-select menus can only use <see cref="SlackPlainText"/>, while radio buttons and checkboxes can use <see cref="SlackMarkdownText"/>. Maximum length is 75 characters.
         /// </remarks>
-        [Newtonsoft.Json.JsonConverter(typeof(SlackTextConverter))]
-        public SlackText Text { get; set; }
+        [JsonConverter(typeof(SlackTextConverter))]
+        public SlackText? Text { get; set; }
 
         /// <summary>
         /// Gets or sets the string value that will be passed to your app when this option is chosen
@@ -23,7 +24,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
         /// <remarks>
         /// Maximum length is 75 characters.
         /// </remarks>
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
         /// <summary>
         /// Gets or sets the line of descriptive text shown below the text field beside the radio button
@@ -31,7 +32,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
         /// <remarks>
         /// Maximum length for the text contained within is 75 characters.
         /// </remarks>
-        public SlackPlainText Description { get; set; }
+        public SlackPlainText? Description { get; set; }
 
         /// <summary>
         /// Gets or sets a URL to load in the user's browser when the option is clicked
@@ -39,6 +40,6 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
         /// <remarks>
         /// The url attribute is only available in overflow menus. Maximum length is 3000 characters. 
         /// </remarks>
-        public Uri Url { get; set; }
+        public Uri? Url { get; set; }
     }
 }

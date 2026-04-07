@@ -6,12 +6,12 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters
 {
     public class SlackTextConverter : JsonConverter
     {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.StartObject)
             {
@@ -38,18 +38,24 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters
 
         private SlackText GetElement(JObject item)
         {
-            if (!item.TryGetValue("type", StringComparison.OrdinalIgnoreCase, out JToken textType))
+            if (!item.TryGetValue("type", StringComparison.OrdinalIgnoreCase, out JToken? textType))
             {
                 throw new JsonException("The type property was not found");
             }
 
             var textTypeValue = textType.Value<string>();
+
+            if (string.IsNullOrWhiteSpace(textTypeValue))
+            {
+                throw new NullReferenceException($"{nameof(textTypeValue)} is null or whitespace");
+            }
+
             if (!SlackConverterHelpers.TextMapping.TryGetValue(textTypeValue, out var textClassType))
             {
                 throw new JsonException($"The type {textTypeValue} is not a text type that is supported");
             }
 
-            return (SlackText)item.ToObject(textClassType);
+            return (SlackText)item.ToObject(textClassType)!;
         }
 
         public override bool CanConvert(Type objectType)

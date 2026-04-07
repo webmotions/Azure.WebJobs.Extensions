@@ -9,8 +9,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Validators.BlockElements
         public SlackDatePickerBlockElementValidator()
         {
             RuleFor(x => x.ActionId).NotEmpty().MaximumLength(255);
-            RuleFor(x => x.Placeholder).Must(x => x.Text.Length <= 150).When(x => x.Placeholder != null);
-            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()).When(x => x.Confirm != null);
+            RuleFor(x => x.Placeholder).Must(x => x!.Text!.Length <= 150).When(x => x.Placeholder != null && !string.IsNullOrEmpty(x.Placeholder.Text));
+            RuleFor(x => x.Confirm).SetValidator(new SlackConfirmationValidator()!).When(x => x.Confirm != null);
         }
     }
 }

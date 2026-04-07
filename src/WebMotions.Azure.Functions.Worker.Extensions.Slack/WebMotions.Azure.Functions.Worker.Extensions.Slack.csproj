@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<WebJobsExtension Include="WebMotions.Azure.WebJobs.Extensions.Slack" Version="1.2.4-devlocal" />
+	<WebJobsExtension Include="WebMotions.Azure.WebJobs.Extensions.Slack" Version="1.2.5-devlocal" />
   </ItemGroup>
 
 	<!-- required for the webjobs extension to be registred. -->

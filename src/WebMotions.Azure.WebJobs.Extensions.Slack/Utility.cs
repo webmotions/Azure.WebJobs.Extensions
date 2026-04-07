@@ -8,7 +8,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
 {
     internal static class Utility
     {
-        internal static string FirstOrDefault(params string[] values)
+        internal static string? FirstOrDefault(params string?[] values)
         {
             return values.FirstOrDefault(v => !string.IsNullOrEmpty(v));
         }
@@ -23,10 +23,10 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
             var ret = new Dictionary<string, Type>();
             var memInfo = enumType.GetMembers();
 
-            for (int i = 0; i < memInfo.Length; i++)
+            foreach (var member in memInfo)
             {
-                var attr1 = memInfo[i].GetCustomAttribute(typeof(EnumMemberAttribute));
-                var attr2 = memInfo[i].GetCustomAttribute(typeof(EnumMetadataTypeAttribute));
+                var attr1 = member.GetCustomAttribute(typeof(EnumMemberAttribute));
+                var attr2 = member.GetCustomAttribute(typeof(EnumMetadataTypeAttribute));
 
                 if (attr1 == null || attr2 == null)
                 {
@@ -34,8 +34,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack
                 }
 
                 var enumMemberAttribute = (EnumMemberAttribute)attr1;
-                var metadatAttribute = (EnumMetadataTypeAttribute)attr2;
-                ret[enumMemberAttribute.Value] = metadatAttribute.Type;
+                var metadataAttribute = (EnumMetadataTypeAttribute)attr2;
+                ret[enumMemberAttribute.Value] = metadataAttribute.Type;
             }
 
             return ret;
