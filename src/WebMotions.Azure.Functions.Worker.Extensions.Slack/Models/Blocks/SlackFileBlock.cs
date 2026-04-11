@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
 {
     /// <summary>
     /// Displays a remote file.
     /// </summary>
-    public class SlackFileBlock
+    public class SlackFileBlock : SlackBlockBase
     {
         /// <summary>
         /// Gets the type of the block.
@@ -13,18 +13,9 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         public string Type => "file";
 
         /// <summary>
-        /// Gets or sets the unique identifier for the block.
-        /// </summary>
-        /// <remarks>
-        /// Maximum length is 255 characters.
-        /// </remarks>
-        [JsonProperty("block_id")]
-        public string? BlockId { get; set; }
-
-        /// <summary>
         /// Gets or sets the external unique ID.
         /// </summary>
-        [JsonProperty("external_id")]
+        [JsonPropertyName("external_id")]
         public string? ExternalId { get; set; }
 
         /// <summary>

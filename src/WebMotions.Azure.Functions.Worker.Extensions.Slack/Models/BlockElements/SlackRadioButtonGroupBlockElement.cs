@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
@@ -6,6 +6,8 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
     /// <summary>
     /// A radio button group that allows a user to choose one item from a list of possible options.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackRadioButtonGroupBlockElement), "slackRadioButtonGroupBlockElement")]
     public class SlackRadioButtonGroupBlockElement
     {
         /// <summary>
@@ -19,7 +21,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>
@@ -31,7 +33,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// Gets or sets a <see cref="SlackOption"/> that exactly matches one of the options within <see cref="Options"/>.
         /// This option will be selected when the radio button group initially loads.
         /// </summary>
-        [JsonProperty("initial_option")]
+        [JsonPropertyName("initial_option")]
         public SlackOption? InitialOption { get; set; }
 
         /// <summary>

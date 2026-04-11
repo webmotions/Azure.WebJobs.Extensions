@@ -20,7 +20,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Have to be <see cref="SlackOption"/> that are included in the <see cref="Options"/> collection
         /// </remarks>
-        [JsonProperty("initial_options")]
+        [JsonPropertyName("initial_options")]
         public List<SlackOption>? SelectedOptions { get; set; } = new List<SlackOption>();
 
         /// <summary>

@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackMultiSelectMenuExternalSourceBlockElement), "slackMultiSelectMenuExternalSourceBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuExternalSourceBlockElement), "slackSelectMenuExternalSourceBlockElement")]
     public abstract class SlackMenuExternalSourceBlockElementBase : SlackMenuBlockElementBase
     {
         /// <summary>
@@ -11,7 +14,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// If not set, the default value set by Slack is 3
         /// </remarks>
-        [JsonProperty("min_query_length")]
+        [JsonPropertyName("min_query_length")]
         public int? MinimumQueryLength { get; set; }
     }
 }

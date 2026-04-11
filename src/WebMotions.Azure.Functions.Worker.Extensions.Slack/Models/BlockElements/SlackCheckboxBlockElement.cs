@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
@@ -6,6 +6,8 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
     /// <summary>
     /// A checkbox group that allows a user to choose multiple items from a list of possible options.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackCheckboxBlockElement), "slackCheckboxBlockElement")]
     public class SlackCheckboxBlockElement
     {
         /// <summary>
@@ -19,7 +21,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Have to be <see cref="SlackOption"/> that are included in the <see cref="Options"/> collection
         /// </remarks>
-        [JsonProperty("initial_options")]
+        [JsonPropertyName("initial_options")]
         public List<SlackOption>? SelectedOptions { get; set; } = new List<SlackOption>();
 
         /// <summary>

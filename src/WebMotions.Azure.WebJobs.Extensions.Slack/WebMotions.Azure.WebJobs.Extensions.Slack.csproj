@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.2.3" />
-    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.45" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.44" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	<!--Azure functions host still runs on .NET 8. Once it runs on .NET 10, update this. -->
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />

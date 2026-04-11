@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
 {
@@ -12,7 +12,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public override string? ActionId { get; set; }
     }
 }

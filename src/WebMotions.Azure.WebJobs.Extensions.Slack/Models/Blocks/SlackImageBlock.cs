@@ -17,7 +17,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("block_id")]
+        [JsonPropertyName("block_id")]
         public string? BlockId { get; set; }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum length is 3000 characters.
         /// </remarks>
-        [JsonProperty("image_url")]
+        [JsonPropertyName("image_url")]
         public Uri? Url { get; set; }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum length is 2000 characters.
         /// </remarks>
-        [JsonProperty("alt_text")]
+        [JsonPropertyName("alt_text")]
         public string? AlternateText { get; set; }
 
         /// <summary>

@@ -1,7 +1,18 @@
-﻿using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
+﻿using System.Text.Json.Serialization;
+using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackMultiSelectMenuExternalSourceBlockElement), "slackMultiSelectMenuExternalSourceBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuExternalSourceBlockElement), "slackSelectMenuExternalSourceBlockElement")]
+    [JsonDerivedType(typeof(SlackMultiSelectMenuConversationBlockElement), "slackMultiSelectMenuConversationBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuConversationBlockElement), "slackSelectMenuConversationBlockElement")]
+    [JsonDerivedType(typeof(SlackMultiSelectMenuStaticBlockElement), "slackMultiSelectMenuStaticBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuStaticBlockElement), "slackSelectMenuStaticBlockElement")]
+    [JsonDerivedType(typeof(SlackMultiSelectMenuUserListBlockElement), "slackMultiSelectMenuUserListBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuUserListBlockElement), "slackSelectMenuUserListBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuChannelBlockElement), "slackSelectMenuChannelBlockElement")]
     public abstract class SlackMenuBlockElementBase
     {
         /// <summary>

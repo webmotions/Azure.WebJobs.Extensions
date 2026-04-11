@@ -10,7 +10,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// If a initial conversation is supplied, it will be ignored
         /// </remarks>
-        [JsonProperty("default_to_current_conversation")]
+        [JsonPropertyName("default_to_current_conversation")]
         public bool DefaultToCurrentConversation { get; set; }
     }
 }

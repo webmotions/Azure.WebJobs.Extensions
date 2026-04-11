@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
@@ -6,6 +6,8 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
     /// <summary>
     /// An interactive component that inserts a button. The button can be a trigger for anything from opening a simple link to starting a complex workflow.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackButtonBlockElement), "slackButtonBlockElement")]
     public class SlackButtonBlockElement
     {
         /// <summary>
@@ -27,7 +29,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>

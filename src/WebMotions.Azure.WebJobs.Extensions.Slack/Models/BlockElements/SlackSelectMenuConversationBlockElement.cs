@@ -15,13 +15,13 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of any valid conversation to be pre-selected when the menu loads. 
         /// </summary>
-        [JsonProperty("initial_conversation")]
+        [JsonPropertyName("initial_conversation")]
         public string? InitialConversation { get; set; }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// This field only works with menus in input blocks in modals.
         /// </remarks>
-        [JsonProperty("response_url_enabled")]
+        [JsonPropertyName("response_url_enabled")]
         public bool ResponseUrlEnabled { get; set; }
     }
 }

@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
+using SlackFunctionApp;
 using WebMotions.Azure.WebJobs.Extensions.Slack;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
 
-namespace SlackFunctionApp
+namespace SlackFunctionAppInProcess
 {
     public class SlackFunctionApp
     {

@@ -1,21 +1,22 @@
 ﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models
 {
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum SlackButtonStyle
     {
         /// <summary>
         /// Gives buttons a green outline and text, ideal for affirmation or confirmation actions
         /// </summary>
         [EnumMember(Value = "primary")]
+        [JsonStringEnumMemberName("primary")]
         Primary,
         /// <summary>
         /// Gives buttons a red outline and text, and should be used when the action is destructive
         /// </summary>
         [EnumMember(Value = "danger")]
+        [JsonStringEnumMemberName("danger")]
         Danger
     }
 }

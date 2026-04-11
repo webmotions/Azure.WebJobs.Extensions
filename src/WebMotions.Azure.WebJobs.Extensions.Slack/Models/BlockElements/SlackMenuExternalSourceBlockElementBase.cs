@@ -11,7 +11,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// If not set, the default value set by Slack is 3
         /// </remarks>
-        [JsonProperty("min_query_length")]
+        [JsonPropertyName("min_query_length")]
         public int? MinimumQueryLength { get; set; }
     }
 }

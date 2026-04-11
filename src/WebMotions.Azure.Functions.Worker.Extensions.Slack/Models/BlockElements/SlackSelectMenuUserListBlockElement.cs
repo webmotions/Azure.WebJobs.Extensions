@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
 {
@@ -15,13 +15,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public override string? ActionId { get; set; }
 
         /// <summary>
         /// Gets or sets the user ID of any valid user to be pre-selected when the menu loads.
         /// </summary>
-        [JsonProperty("initial_user")]
+        [JsonPropertyName("initial_user")]
         public string? InitialUser { get; set; }
     }
 }

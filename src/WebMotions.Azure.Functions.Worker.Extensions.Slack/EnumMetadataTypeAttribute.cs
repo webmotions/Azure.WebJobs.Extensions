@@ -8,13 +8,10 @@
     public class EnumMetadataTypeAttribute : Attribute
     {
         public Type Type { get; private set; }
+
         public EnumMetadataTypeAttribute(Type type)
         {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-            Type = type;
+            Type = type ?? throw new ArgumentNullException(nameof(type));
         }
     }
 }

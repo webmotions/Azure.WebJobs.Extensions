@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
@@ -7,7 +7,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
     /// <summary>
     /// One of the most flexible blocks available - it can be used as a simple text block, in combination with text fields, or side-by-side with any of the available block elements.
     /// </summary>
-    public class SlackSectionBlock
+    public class SlackSectionBlock : SlackBlockBase
     {
         /// <summary>
         /// Gets the type of the block.
@@ -15,21 +15,11 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         public string Type => "section";
 
         /// <summary>
-        /// Gets or sets the unique identifier for the block.
-        /// </summary>
-        /// <remarks>
-        /// Maximum length is 255 characters.
-        /// </remarks>
-        [JsonProperty("block_id")]
-        public string? BlockId { get; set; }
-
-        /// <summary>
         /// Gets or sets the text for the block
         /// </summary>
         /// <remarks>
         /// Maximum length is 3000 characters. 
         /// </remarks>
-        [JsonConverter(typeof(SlackTextConverter))]
         public SlackText? Text { get; set; }
 
         /// <summary>
@@ -38,7 +28,6 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum number of items is 10. Maximum length for the text in each item is 2000 characters.
         /// </remarks>
-        [JsonConverter(typeof(SlackTextConverter))]
         public List<SlackText> Fields { get; set; } = new List<SlackText>();
 
         /// <summary>

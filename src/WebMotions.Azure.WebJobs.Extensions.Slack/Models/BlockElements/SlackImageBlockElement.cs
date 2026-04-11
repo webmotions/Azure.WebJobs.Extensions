@@ -13,13 +13,13 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <summary>
         /// Gets or sets he URL of the image to be displayed.
         /// </summary>
-        [JsonProperty("image_url")]
+        [JsonPropertyName("image_url")]
         public Uri? Url { get; set; }
 
         /// <summary>
         /// Gets or sets the plain-text summary of the image. This should not contain any markup.
         /// </summary>
-        [JsonProperty("alt_text")]
+        [JsonPropertyName("alt_text")]
         public string? AlternateText { get; set; }
     }
 }

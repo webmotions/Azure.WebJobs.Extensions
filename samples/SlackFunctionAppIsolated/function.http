@@ -1,2 +1,6 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 GET http://localhost:7193/api/SlackFunctionAppSample
+
+###
+# when debugging the host through func start --verbose
+GET http://localhost:7071/api/SlackFunctionAppSample

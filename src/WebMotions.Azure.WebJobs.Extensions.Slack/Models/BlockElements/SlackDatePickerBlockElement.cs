@@ -21,7 +21,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <summary>
         /// Gets or sets the placeholder text shown on the datepicker. 
         /// </summary>
-        [JsonProperty("initial_date")]
+        [JsonPropertyName("initial_date")]
         [JsonConverter(typeof(JsonDateTimeIsoOverrideConverter))]
         public DateTime InitialDate { get; set; }
 

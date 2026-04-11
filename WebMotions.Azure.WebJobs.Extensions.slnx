@@ -13,6 +13,7 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/WebMotions.Azure.WebJobs.Extensions.Slack.Tests/WebMotions.Azure.WebJobs.Extensions.Slack.Tests.csproj" />
+    <Project Path="tests/WebMotions.Azure.Worker.Extensions.Slack.Tests/WebMotions.Azure.Worker.Extensions.Slack.Tests.csproj" Id="708b9acd-0efb-40cf-8323-bc41664fcc7f" />
   </Folder>
   <Project Path="src/WebMotions.Azure.Functions.Worker.Extensions.Slack/WebMotions.Azure.Functions.Worker.Extensions.Slack.csproj" />
   <Project Path="src/WebMotions.Azure.WebJobs.Extensions.Slack/WebMotions.Azure.WebJobs.Extensions.Slack.csproj" />

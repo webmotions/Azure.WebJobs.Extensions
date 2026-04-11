@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using System.Text.Json.Serialization;
+using WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects
 {
+    [JsonConverter(typeof(SlackTextConverter))]
     public abstract class SlackText
     {
-        [JsonConverter(typeof(StringEnumConverter))]
         public abstract SlackTextType Type { get; }
 
         /// <summary>

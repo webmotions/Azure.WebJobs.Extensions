@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackMultiSelectMenuConversationBlockElement), "slackMultiSelectMenuConversationBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuConversationBlockElement), "slackSelectMenuConversationBlockElement")]
     public abstract class SlackMenuConversationBlockElementBase : SlackMenuBlockElementBase
     {
         /// <summary>
@@ -10,7 +13,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// If a initial conversation is supplied, it will be ignored
         /// </remarks>
-        [JsonProperty("default_to_current_conversation")]
+        [JsonPropertyName("default_to_current_conversation")]
         public bool DefaultToCurrentConversation { get; set; }
     }
 }

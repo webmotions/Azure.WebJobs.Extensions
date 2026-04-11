@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElements
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackPlainTextInputBlockElement), "slackPlainTextInputBlockElement")]
     public class SlackPlainTextInputBlockElement
     {
         /// <summary>
@@ -16,7 +18,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>
@@ -30,7 +32,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <summary>
         /// Gets or sets the initial value in the plain-text input when it is loaded. 
         /// </summary>
-        [JsonProperty("initial_value")]
+        [JsonPropertyName("initial_value")]
         public string? InitialValue { get; set; }
 
         /// <summary>
@@ -44,13 +46,13 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Maximum value is 3000.
         /// </remarks>
-        [JsonProperty("min_length")]
+        [JsonPropertyName("min_length")]
         public int? MinimumLength { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum length of input that the user can provide. If the user provides more, they will receive an error.
         /// </summary>
-        [JsonProperty("max_length")]
+        [JsonPropertyName("max_length")]
         public int? MaximumLength { get; set; }
     }
 }

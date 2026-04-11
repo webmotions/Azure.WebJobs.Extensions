@@ -1,24 +1,13 @@
-﻿using Newtonsoft.Json;
-
-namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
+﻿namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
 {
     /// <summary>
-    /// A content divider, like an hr HMTL tag, to split up different blocks inside of a message.
+    /// A content divider, like a hr HTML tag, to split up different blocks inside a message.
     /// </summary>
-    public class SlackDividerBlock
+    public class SlackDividerBlock : SlackBlockBase
     {
         /// <summary>
         /// Gets the type of the block.
         /// </summary>
         public string Type => "divider";
-
-        /// <summary>
-        /// Gets or sets the unique identifier for the block.
-        /// </summary>
-        /// <remarks>
-        /// Maximum length is 255 characters.
-        /// </remarks>
-        [JsonProperty("block_id")]
-        public string? BlockId { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// Gets or sets a <see cref="SlackOption"/> that exactly matches one of the options within <see cref="Options"/>.
         /// This option will be selected when the radio button group initially loads.
         /// </summary>
-        [JsonProperty("initial_option")]
+        [JsonPropertyName("initial_option")]
         public SlackOption? InitialOption { get; set; }
 
         /// <summary>

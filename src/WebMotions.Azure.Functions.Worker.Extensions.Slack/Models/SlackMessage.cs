@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models
 {
@@ -31,19 +32,19 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models
         /// <example>
         /// Example icon emoji for heart: ":heart:"
         /// </example>
-        [JsonProperty("icon_emoji")]
+        [JsonPropertyName("icon_emoji")]
         public string? IconEmoji { get; set; }
 
         /// <summary>
         /// Gets or sets the icon of the bot application
         /// </summary>
-        [JsonProperty("icon_url")]
+        [JsonPropertyName("icon_url")]
         public string? IconUrl { get; set; }
 
         /// <summary>
         /// Gets or sets to tell Slack whether or not to process this message as Markdown. Default value is true.
         /// </summary>
-        [JsonProperty("mrkdwn")]
+        [JsonPropertyName("mrkdwn")]
         public bool IsMarkdown { get; set; } = true;
 
         /// <summary>
@@ -52,24 +53,24 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models
         /// <remarks>
         /// Works only when a user JWT is used
         /// </remarks>
-        [JsonProperty("as_user")]
+        [JsonPropertyName("as_user")]
         public bool AsUser { get; set; }
 
         /// <summary>
         /// Gets the collection of the structured blocks
         /// </summary>
-        public List<object> Blocks { get; set; } = new List<object>();
+        public List<SlackBlockBase> Blocks { get; set; } = new List<SlackBlockBase>();
 
         /// <summary>
         /// Gets or sets whether to enable unfurling of primarily text-based content. Defaults to true.
         /// </summary>
-        [JsonProperty("unfurl_links")]
+        [JsonPropertyName("unfurl_links")]
         public bool UnfurlLinks { get; set; } = true;
 
         /// <summary>
         /// Gets or sets to enable unfurling of media content. Defaults to false.
         /// </summary>
-        [JsonProperty("unfurl_media")]
+        [JsonPropertyName("unfurl_media")]
         public bool UnfurlMedia { get; set; }
 
         /// <summary>

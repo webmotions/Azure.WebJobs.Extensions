@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects
@@ -44,7 +44,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects
         /// <summary>
         /// Gets or sets the color scheme applied to the confirm button
         /// </summary>
-        [JsonProperty("style")]
+        [JsonPropertyName("style")]
         public SlackButtonStyle? ConfirmButtonStyle { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
@@ -7,6 +7,8 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
     /// <summary>
     /// An element which lets users easily select a date from a calendar style UI.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackDatePickerBlockElement), "slackDatePickerBlockElement")]
     public class SlackDatePickerBlockElement
     {
         /// <summary>
@@ -20,7 +22,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <remarks>
         /// Should be unique among all other action_ids used elsewhere by your app. Maximum length is 255 characters.
         /// </remarks>
-        [JsonProperty("action_id")]
+        [JsonPropertyName("action_id")]
         public string? ActionId { get; set; }
 
         /// <summary>
@@ -34,7 +36,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.BlockElement
         /// <summary>
         /// Gets or sets the placeholder text shown on the datepicker. 
         /// </summary>
-        [JsonProperty("initial_date")]
+        [JsonPropertyName("initial_date")]
         [JsonConverter(typeof(JsonDateTimeIsoOverrideConverter))]
         public DateTime InitialDate { get; set; }
 

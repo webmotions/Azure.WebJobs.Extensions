@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models;
 
@@ -31,6 +33,13 @@ public class SlackFunction
 
         var slackMessageSample2 = samples.GetSample2();
         messages.Add(slackMessageSample2);
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            WriteIndented = true
+        };
 
         return Task.FromResult<IEnumerable<SlackMessage>>(messages);
     }

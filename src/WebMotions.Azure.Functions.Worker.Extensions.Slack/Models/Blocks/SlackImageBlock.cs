@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
 {
-    public class SlackImageBlock
+    public class SlackImageBlock : SlackBlockBase
     {
         /// <summary>
         /// Gets the type of the block.
@@ -11,21 +11,12 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         public string Type => "image";
 
         /// <summary>
-        /// Gets or sets the unique identifier for the block.
-        /// </summary>
-        /// <remarks>
-        /// Maximum length is 255 characters.
-        /// </remarks>
-        [JsonProperty("block_id")]
-        public string? BlockId { get; set; }
-
-        /// <summary>
         /// Gets or sets the URL of the image to be displayed.
         /// </summary>
         /// <remarks>
         /// Maximum length is 3000 characters.
         /// </remarks>
-        [JsonProperty("image_url")]
+        [JsonPropertyName("image_url")]
         public Uri? Url { get; set; }
 
         /// <summary>
@@ -34,7 +25,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Models.Blocks
         /// <remarks>
         /// Maximum length is 2000 characters.
         /// </remarks>
-        [JsonProperty("alt_text")]
+        [JsonPropertyName("alt_text")]
         public string? AlternateText { get; set; }
 
         /// <summary>

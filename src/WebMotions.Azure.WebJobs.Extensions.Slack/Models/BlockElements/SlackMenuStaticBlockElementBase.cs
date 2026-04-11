@@ -20,7 +20,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Maximum number of 100 items
         /// </remarks>
-        [JsonProperty("option_groups")]
+        [JsonPropertyName("option_groups")]
         public List<SlackOptionGroup>? OptionGroups { get; set; } = new List<SlackOptionGroup>();
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// <remarks>
         /// Have to be <see cref="SlackOption"/> that are included in the <see cref="Options"/> or <see cref="OptionGroups"/> collection
         /// </remarks>
-        [JsonProperty("initial_options")]
+        [JsonPropertyName("initial_options")]
         public List<SlackOption>? SelectedOptions { get; set; } = new List<SlackOption>();
     }
 }
