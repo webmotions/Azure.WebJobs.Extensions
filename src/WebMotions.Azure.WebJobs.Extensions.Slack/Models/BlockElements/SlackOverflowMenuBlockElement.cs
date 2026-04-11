@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
@@ -8,6 +8,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
     /// This is like a cross between a button and a select menu - when a user clicks on this overflow button, they will be presented with a list of options to choose from.
     /// Unlike the select menu, there is no typeahead field, and the button always appears with an ellipsis ("…") rather than customizable text.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackOverflowMenuBlockElement), "slackOverflowMenuBlockElement")]
     public class SlackOverflowMenuBlockElement
     {
         /// <summary>

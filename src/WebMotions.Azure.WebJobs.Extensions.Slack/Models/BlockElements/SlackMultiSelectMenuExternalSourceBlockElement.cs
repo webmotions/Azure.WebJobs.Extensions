@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Converters;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
@@ -25,8 +25,9 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
         /// Gets or sets a collection of <see cref="SlackOption"/> or <see cref="SlackOptionGroup"/> objects that exactly match one or more of the options.
         /// These options will be selected when the menu initially loads.
         /// </summary>
-        [JsonPropertyName("initial_options", ItemConverterType = typeof(SlackOptionsConverter))]
-        public List<object>? InitialOptions { get; set; } = new List<object>();
+        [JsonPropertyName("initial_options")]
+        [JsonConverter(typeof(SlackOptionsConverter))]
+        public List<object> InitialOptions { get; set; } = new List<object>();
 
         /// <summary>
         /// Gets or sets the maximum number of items that can be selected in the menu

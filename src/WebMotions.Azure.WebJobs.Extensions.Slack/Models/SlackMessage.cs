@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Blocks;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models
 {
@@ -60,7 +61,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models
         /// <summary>
         /// Gets the collection of the structured blocks
         /// </summary>
-        public List<object> Blocks { get; set; } = new List<object>();
+        public List<SlackBlockBase> Blocks { get; set; } = new List<SlackBlockBase>();
 
         /// <summary>
         /// Gets or sets whether to enable unfurling of primarily text-based content. Defaults to true.

@@ -1,7 +1,7 @@
 using FluentAssertions;
-using Newtonsoft.Json.Linq;
-using System;
 using FluentAssertions.Execution;
+using System;
+using System.Text.Json;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Configs;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements;
@@ -33,7 +33,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
               ""unfurl_media"": false
             }";
 
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -64,7 +64,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
               ""unfurl_links"": true
             }";
 
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -77,7 +77,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
             var block = new SlackActionBlock();
             block.Elements.Add(new SlackButtonBlockElement
             {
-                Text = new SlackPlainText()
+                Text = new SlackPlainText
                 {
                     Text = "Click Me",
                     Emoji = true
@@ -137,7 +137,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
               ]
             }";
 
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -252,7 +252,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -299,7 +299,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -346,7 +346,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -357,7 +357,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_a_multi_select_external_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackMultiSelectMenuExternalSourceBlockElement()
+            block.Elements.Add(new SlackMultiSelectMenuExternalSourceBlockElement
             {
                 ActionId = "text1234",
                 Placeholder = new SlackPlainText
@@ -419,7 +419,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -430,7 +430,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_a_multi_select_static_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackMultiSelectMenuStaticBlockElement()
+            block.Elements.Add(new SlackMultiSelectMenuStaticBlockElement
             {
                 ActionId = "text1234",
                 Placeholder = new SlackPlainText
@@ -509,7 +509,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -520,7 +520,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_a_multi_select_user_list_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackMultiSelectMenuUserListBlockElement()
+            block.Elements.Add(new SlackMultiSelectMenuUserListBlockElement
             {
                 ActionId = "text1234",
                 Placeholder = new SlackPlainText
@@ -556,7 +556,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -567,7 +567,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_an_overflow_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackOverflowMenuBlockElement()
+            block.Elements.Add(new SlackOverflowMenuBlockElement
             {
                 ActionId = "overflow",
                 Options =
@@ -636,7 +636,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -647,7 +647,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_a_plain_text_input_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackPlainTextInputBlockElement()
+            block.Elements.Add(new SlackPlainTextInputBlockElement
             {
                 ActionId = "plain_input",
                 Placeholder = new SlackPlainText
@@ -683,7 +683,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -699,7 +699,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 Text = new SlackPlainText("Radio 1"),
                 Value = "A1"
             };
-            block.Elements.Add(new SlackRadioButtonGroupBlockElement()
+            block.Elements.Add(new SlackRadioButtonGroupBlockElement
             {
                 ActionId = "this_is_an_action_id",
                 Options =
@@ -758,7 +758,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -805,7 +805,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -852,7 +852,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -863,7 +863,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_a_select_external_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackSelectMenuExternalSourceBlockElement()
+            block.Elements.Add(new SlackSelectMenuExternalSourceBlockElement
             {
                 ActionId = "text1234",
                 Placeholder = new SlackPlainText
@@ -920,7 +920,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -931,7 +931,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_a_select_static_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackSelectMenuStaticBlockElement()
+            block.Elements.Add(new SlackSelectMenuStaticBlockElement
             {
                 ActionId = "text1234",
                 Placeholder = new SlackPlainText
@@ -1010,7 +1010,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -1021,7 +1021,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_block_of_type_action_and_a_select_user_list_block_element()
         {
             var block = new SlackActionBlock();
-            block.Elements.Add(new SlackSelectMenuUserListBlockElement()
+            block.Elements.Add(new SlackSelectMenuUserListBlockElement
             {
                 ActionId = "text1234",
                 Placeholder = new SlackPlainText
@@ -1057,7 +1057,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -1068,7 +1068,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_context_block()
         {
             var block = new SlackContextBlock();
-            block.Elements.Add(new SlackImageBlockElement()
+            block.Elements.Add(new SlackImageBlockElement
             {
                 Url = new Uri("https://image.freepik.com/free-photo/red-drawing-pin_1156-445.jpg"),
                 AlternateText = "images"
@@ -1102,7 +1102,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -1130,7 +1130,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -1159,11 +1159,11 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 {
                   ""type"": ""file"",
                   ""external_id"": ""ABCD1"",
-                  ""source"": ""remote"",
+                  ""source"": ""remote""
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -1173,7 +1173,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         [Fact]
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_an_image_block()
         {
-            var block = new SlackImageBlock()
+            var block = new SlackImageBlock
             {
                 Title = new SlackPlainText("Please enjoy this photo of a kitten"),
                 BlockId = "image4",
@@ -1204,7 +1204,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -1214,7 +1214,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         [Fact]
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_section_block()
         {
-            var block = new SlackSectionBlock()
+            var block = new SlackSectionBlock
             {
                 Text = new SlackMarkdownText("A message *with some bold text* and _some italicized text_.")
             };
@@ -1239,7 +1239,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
@@ -1249,7 +1249,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
         [Fact]
         public void convertslackmessage_should_return_expected_result_when_the_message_contains_a_header_block()
         {
-            var block = new SlackHeaderBlock()
+            var block = new SlackHeaderBlock
             {
                 Text = new SlackPlainText("A message with some bold text and some other text.")
             };
@@ -1274,14 +1274,14 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Tests
                 }
               ]
             }";
-            var expectedSlackJsonMessage = JObject.Parse(json);
+            var expectedSlackJsonMessage = JsonDocument.Parse(json).RootElement;
 
             var slackMessage = SlackExtensionConfigProvider.ConvertSlackMessage(expectedSlackJsonMessage);
 
             AssertMessage(slackMessage, expectedSlackMessage);
         }
 
-        private SlackMessage CreateSlackMessage(object blockElement)
+        private SlackMessage CreateSlackMessage(SlackBlockBase blockElement)
         {
             var slackMessage = new SlackMessage();
             slackMessage.AsUser = false;

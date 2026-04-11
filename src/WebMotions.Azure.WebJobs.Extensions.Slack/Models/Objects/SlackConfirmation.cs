@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Converters;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
@@ -22,7 +22,7 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects
         /// <remarks>
         /// Maximum length is 300 characters. Use <see cref="SlackPlainText"/> or <see cref="SlackMarkdownText"/>
         /// </remarks>
-        [Newtonsoft.Json.JsonConverter(typeof(SlackTextConverter))]
+        [JsonConverter(typeof(SlackTextConverter))]
         public SlackText? Text { get; set; }
 
         /// <summary>

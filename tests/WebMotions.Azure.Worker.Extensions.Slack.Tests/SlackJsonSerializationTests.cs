@@ -8,7 +8,7 @@ namespace WebMotions.Azure.Worker.Extensions.Slack.Tests
     public class SlackJsonSerializationTests
     {
         [Fact]
-        public void SlackMessage_Should_Serialize_And_Deserialize_Correctly()
+        public void slackMessage_should_serialize_and_deserialize_correctly()
         {
             var messages = new List<SlackMessage>();
             var samples = new SlackMessageSample();

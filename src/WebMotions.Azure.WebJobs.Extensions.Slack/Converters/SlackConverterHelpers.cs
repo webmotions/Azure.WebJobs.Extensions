@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Blocks;
@@ -12,48 +12,53 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
     {
         internal static readonly IDictionary<string, Type> TextMapping = Utility.GetEnumMemberValueAndMetadata(typeof(SlackTextType));
 
-        public static object? GetBlockElement(string elementTypeValue, JObject item)
+        public static object? GetBlockElement(string? elementTypeValue, JsonElement item)
         {
+            if (string.IsNullOrWhiteSpace(elementTypeValue))
+            {
+                return null;
+            }
+
             if (TextMapping.TryGetValue(elementTypeValue, out var textClassType))
             {
-                return (SlackText)item.ToObject(textClassType)!;
+                return (SlackText)item.Deserialize(textClassType)!;
             }
 
             return elementTypeValue switch
             {
-                "button" => item.ToObject<SlackButtonBlockElement>(),
-                "checkboxes" => item.ToObject<SlackCheckboxBlockElement>(),
-                "datepicker" => item.ToObject<SlackDatePickerBlockElement>(),
-                "image" => item.ToObject<SlackImageBlockElement>(),
-                "multi_channels_select" => item.ToObject<SlackMultiSelectMenuChannelBlockElement>(),
-                "multi_conversations_select" => item.ToObject<SlackMultiSelectMenuConversationBlockElement>(),
-                "multi_external_select" => item.ToObject<SlackMultiSelectMenuExternalSourceBlockElement>(),
-                "multi_static_select" => item.ToObject<SlackMultiSelectMenuStaticBlockElement>(),
-                "multi_users_select" => item.ToObject<SlackMultiSelectMenuUserListBlockElement>(),
-                "overflow" => item.ToObject<SlackOverflowMenuBlockElement>(),
-                "plain_text_input" => item.ToObject<SlackPlainTextInputBlockElement>(),
-                "radio_buttons" => item.ToObject<SlackRadioButtonGroupBlockElement>(),
-                "channels_select" => item.ToObject<SlackSelectMenuChannelBlockElement>(),
-                "conversations_select" => item.ToObject<SlackSelectMenuConversationBlockElement>(),
-                "external_select" => item.ToObject<SlackSelectMenuExternalSourceBlockElement>(),
-                "static_select" => item.ToObject<SlackSelectMenuStaticBlockElement>(),
-                "users_select" => item.ToObject<SlackSelectMenuUserListBlockElement>(),
+                "button" => item.Deserialize<SlackButtonBlockElement>(),
+                "checkboxes" => item.Deserialize<SlackCheckboxBlockElement>(),
+                "datepicker" => item.Deserialize<SlackDatePickerBlockElement>(),
+                "image" => item.Deserialize<SlackImageBlockElement>(),
+                "multi_channels_select" => item.Deserialize<SlackMultiSelectMenuChannelBlockElement>(),
+                "multi_conversations_select" => item.Deserialize<SlackMultiSelectMenuConversationBlockElement>(),
+                "multi_external_select" => item.Deserialize<SlackMultiSelectMenuExternalSourceBlockElement>(),
+                "multi_static_select" => item.Deserialize<SlackMultiSelectMenuStaticBlockElement>(),
+                "multi_users_select" => item.Deserialize<SlackMultiSelectMenuUserListBlockElement>(),
+                "overflow" => item.Deserialize<SlackOverflowMenuBlockElement>(),
+                "plain_text_input" => item.Deserialize<SlackPlainTextInputBlockElement>(),
+                "radio_buttons" => item.Deserialize<SlackRadioButtonGroupBlockElement>(),
+                "channels_select" => item.Deserialize<SlackSelectMenuChannelBlockElement>(),
+                "conversations_select" => item.Deserialize<SlackSelectMenuConversationBlockElement>(),
+                "external_select" => item.Deserialize<SlackSelectMenuExternalSourceBlockElement>(),
+                "static_select" => item.Deserialize<SlackSelectMenuStaticBlockElement>(),
+                "users_select" => item.Deserialize<SlackSelectMenuUserListBlockElement>(),
                 _ => null
             };
         }
 
-        public static object? GetBlock(string blockTypeValue, JObject item)
+        public static SlackBlockBase? GetBlock(string blockTypeValue, JsonElement item)
         {
             return blockTypeValue switch
             {
-                "actions" => item.ToObject<SlackActionBlock>(),
-                "context" => item.ToObject<SlackContextBlock>(),
-                "divider" => item.ToObject<SlackDividerBlock>(),
-                "file" => item.ToObject<SlackFileBlock>(),
-                "image" => item.ToObject<SlackImageBlock>(),
-                "input" => item.ToObject<SlackInputBlock>(),
-                "section" => item.ToObject<SlackSectionBlock>(),
-                "header" => item.ToObject<SlackHeaderBlock>(),
+                "actions" => item.Deserialize<SlackActionBlock>(),
+                "context" => item.Deserialize<SlackContextBlock>(),
+                "divider" => item.Deserialize<SlackDividerBlock>(),
+                "file" => item.Deserialize<SlackFileBlock>(),
+                "image" => item.Deserialize<SlackImageBlock>(),
+                "input" => item.Deserialize<SlackInputBlock>(),
+                "section" => item.Deserialize<SlackSectionBlock>(),
+                "header" => item.Deserialize<SlackHeaderBlock>(),
                 _ => null
             };
         }

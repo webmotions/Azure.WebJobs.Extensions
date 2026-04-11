@@ -9,7 +9,8 @@
       "enableLiveMetricsFilters": true
     },
     "logLevel": {
-      "default": "Information"
+      "default": "Information",
+      "Gprc": "Trace"
     }
   }
 }

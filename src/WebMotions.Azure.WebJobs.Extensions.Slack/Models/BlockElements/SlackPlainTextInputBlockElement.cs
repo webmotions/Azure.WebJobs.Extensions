@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackPlainTextInputBlockElement), "slackPlainTextInputBlockElement")]
     public class SlackPlainTextInputBlockElement
     {
         /// <summary>

@@ -1,10 +1,9 @@
 ﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models
 {
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Converters.JsonStringEnumConverter<SlackButtonStyle>))]
     public enum SlackButtonStyle
     {
         /// <summary>

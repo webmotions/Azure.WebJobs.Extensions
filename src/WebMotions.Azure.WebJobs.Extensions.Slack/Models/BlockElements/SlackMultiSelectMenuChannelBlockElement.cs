@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
 {

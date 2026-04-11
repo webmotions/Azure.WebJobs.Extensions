@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
@@ -7,6 +7,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
     /// <summary>
     /// An interactive component that inserts a button. The button can be a trigger for anything from opening a simple link to starting a complex workflow.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackButtonBlockElement), "slackButtonBlockElement")]
     public class SlackButtonBlockElement
     {
         /// <summary>

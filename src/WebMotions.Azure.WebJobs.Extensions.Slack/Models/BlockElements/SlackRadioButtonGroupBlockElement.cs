@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
@@ -7,6 +7,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
     /// <summary>
     /// A radio button group that allows a user to choose one item from a list of possible options.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackRadioButtonGroupBlockElement), "slackRadioButtonGroupBlockElement")]
     public class SlackRadioButtonGroupBlockElement
     {
         /// <summary>

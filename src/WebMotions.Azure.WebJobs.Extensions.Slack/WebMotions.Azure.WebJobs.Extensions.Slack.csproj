@@ -18,8 +18,8 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	<!--Azure functions host still runs on .NET 8. Once it runs on .NET 10, update this. -->
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.6" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,10 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackImageBlockElement), "slackImageBlockElement")]
     public class SlackImageBlockElement
     {
         /// <summary>

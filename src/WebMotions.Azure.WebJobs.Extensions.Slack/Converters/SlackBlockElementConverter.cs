@@ -1,71 +1,73 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
 {
     /// <summary>
     /// Converts a block element
     /// </summary>
-    public class SlackBlockElementConverter : JsonConverter
+    public class SlackBlockElementConverter : JsonConverter<object>
     {
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        public override bool CanConvert(Type typeToConvert)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonToken.StartObject)
+            if (reader.TokenType == JsonTokenType.StartObject)
             {
-                var item = JObject.Load(reader);
-                return GetBlockElement(item);
+                using var doc = JsonDocument.ParseValue(ref reader);
+                return GetBlockElement(doc.RootElement, options);
             }
 
-            if (reader.TokenType == JsonToken.StartArray)
+            if (reader.TokenType == JsonTokenType.StartArray)
             {
-                reader.Read();
-                var ret = new List<object>();
-                while (reader.TokenType != JsonToken.EndArray)
-                {
-                    var item = JObject.Load(reader);
-                    var blockElement = GetBlockElement(item);
-                    if (blockElement != null)
-                    {
-                        ret.Add(blockElement);
-                    }
+                var list = new List<object?>();
 
-                    reader.Read();
+                while (reader.Read())
+                {
+                    if (reader.TokenType == JsonTokenType.EndArray)
+                        break;
+
+                    using var doc = JsonDocument.ParseValue(ref reader);
+                    var element = GetBlockElement(doc.RootElement, options);
+
+                    if (element != null)
+                        list.Add(element);
                 }
 
-                return ret;
+                return list;
             }
 
             return null;
         }
 
-        private object? GetBlockElement(JObject item)
+        private object? GetBlockElement(JsonElement element, JsonSerializerOptions options)
         {
-            if (!item.TryGetValue("type", StringComparison.OrdinalIgnoreCase, out JToken? blockElement))
+            if (element.ValueKind != JsonValueKind.Object)
+                return null;
+
+            if (!element.TryGetProperty("type", out var typeProperty))
             {
                 throw new JsonException("The type property was not found.");
             }
 
-            var blockElementTypeValue = blockElement.Value<string>();
-            if (string.IsNullOrWhiteSpace(blockElementTypeValue))
+            var typeValue = typeProperty.GetString();
+
+            if (string.IsNullOrWhiteSpace(typeValue))
             {
-                throw new NullReferenceException($"{nameof(blockElementTypeValue)} is null or whitespace");
+                throw new NullReferenceException($"{nameof(typeValue)} is null or whitespace");
             }
 
-            return SlackConverterHelpers.GetBlockElement(blockElementTypeValue, item);
+            return SlackConverterHelpers.GetBlockElement(typeValue, element);
         }
 
-        public override bool CanConvert(Type objectType)
+        public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
         {
-            return true;
+            JsonSerializer.Serialize(writer, value, value.GetType(), options);
         }
-
-        public override bool CanWrite => false;
     }
 }

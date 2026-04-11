@@ -1,7 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
 {
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackMultiSelectMenuConversationBlockElement), "slackMultiSelectMenuConversationBlockElement")]
+    [JsonDerivedType(typeof(SlackSelectMenuConversationBlockElement), "slackSelectMenuConversationBlockElement")]
     public abstract class SlackMenuConversationBlockElementBase : SlackMenuBlockElementBase
     {
         /// <summary>

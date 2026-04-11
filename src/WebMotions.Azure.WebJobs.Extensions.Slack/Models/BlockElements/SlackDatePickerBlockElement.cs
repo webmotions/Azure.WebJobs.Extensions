@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Converters;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
@@ -8,6 +8,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
     /// <summary>
     /// An element which lets users easily select a date from a calendar style UI.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackDatePickerBlockElement), "slackDatePickerBlockElement")]
     public class SlackDatePickerBlockElement
     {
         /// <summary>

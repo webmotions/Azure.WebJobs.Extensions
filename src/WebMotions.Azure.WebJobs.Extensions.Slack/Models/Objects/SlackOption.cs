@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Converters;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects

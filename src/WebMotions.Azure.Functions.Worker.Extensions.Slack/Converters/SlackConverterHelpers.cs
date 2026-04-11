@@ -45,7 +45,7 @@ namespace WebMotions.Azure.Functions.Worker.Extensions.Slack.Converters
             };
         }
 
-        public static object? GetBlock(string blockTypeValue, JsonElement item)
+        public static SlackBlockBase? GetBlock(string blockTypeValue, JsonElement item)
         {
             return blockTypeValue switch
             {

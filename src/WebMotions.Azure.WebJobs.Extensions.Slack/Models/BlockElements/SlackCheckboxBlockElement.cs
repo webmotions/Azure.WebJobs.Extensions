@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
@@ -7,6 +7,8 @@ namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models.BlockElements
     /// <summary>
     /// A checkbox group that allows a user to choose multiple items from a list of possible options.
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$kind")]
+    [JsonDerivedType(typeof(SlackCheckboxBlockElement), "slackCheckboxBlockElement")]
     public class SlackCheckboxBlockElement
     {
         /// <summary>

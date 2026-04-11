@@ -1,67 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
 {
-    public class SlackOptionsConverter : JsonConverter
+    public class SlackOptionsConverter : JsonConverter<List<object>>
     {
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.StartObject)
-            {
-                var item = JObject.Load(reader);
-                return GetOptionElement(item);
-            }
-
-            if (reader.TokenType == JsonToken.StartArray)
-            {
-                reader.Read();
-                var ret = new List<object>();
-                while (reader.TokenType != JsonToken.EndArray)
-                {
-                    var item = JObject.Load(reader);
-                    var optionElement = GetOptionElement(item);
-                    if (optionElement != null)
-                    {
-                        ret.Add(optionElement);
-                    }
-                    reader.Read();
-                }
-
-                return ret;
-            }
-
-            return null;
-        }
-
-        private object? GetOptionElement(JObject item)
-        {
-            if (item.TryGetValue("text", StringComparison.OrdinalIgnoreCase, out _))
-            {
-                return item.ToObject<SlackOption>();
-            }
-
-            if (item.TryGetValue("label", StringComparison.OrdinalIgnoreCase, out _))
-            {
-                return item.ToObject<SlackOptionGroup>();
-            }
-
-            return null;
-        }
-
-        public override bool CanConvert(Type objectType)
+        public override bool CanConvert(Type typeToConvert)
         {
             return true;
         }
 
-        public override bool CanWrite => false;
+        public override List<object>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            //if (reader.TokenType == JsonTokenType.StartObject)
+            //{
+            //    using var doc = JsonDocument.ParseValue(ref reader);
+            //    return GetOptionElement(doc.RootElement, options);
+            //}
+
+            if (reader.TokenType == JsonTokenType.StartArray)
+            {
+                var list = new List<object?>();
+
+                while (reader.Read())
+                {
+                    if (reader.TokenType == JsonTokenType.EndArray)
+                        break;
+
+                    using var doc = JsonDocument.ParseValue(ref reader);
+                    var element = GetOptionElement(doc.RootElement, options);
+
+                    if (element != null)
+                        list.Add(element);
+                }
+
+                return list!;
+            }
+
+            return null;
+        }
+
+        private object? GetOptionElement(JsonElement element, JsonSerializerOptions options)
+        {
+            if (element.ValueKind != JsonValueKind.Object)
+            {
+                return null;
+            }
+
+            if (element.TryGetProperty("text", out _))
+            {
+                return JsonSerializer.Deserialize<SlackOption>(element.GetRawText(), options);
+            }
+
+            if (element.TryGetProperty("label", out _))
+            {
+                return JsonSerializer.Deserialize<SlackOptionGroup>(element.GetRawText(), options);
+            }
+
+            return null;
+        }
+
+        public override void Write(Utf8JsonWriter writer, List<object> value, JsonSerializerOptions options)
+        {
+            JsonSerializer.Serialize(writer, value, value.GetType(), options);
+        }
     }
 }

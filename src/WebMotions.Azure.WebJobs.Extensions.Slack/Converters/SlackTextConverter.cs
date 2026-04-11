@@ -1,70 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Converters
 {
-    public class SlackTextConverter : JsonConverter
+    public class SlackTextConverter : JsonConverter<SlackText>
     {
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        public override bool CanConvert(Type typeToConvert)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        public override SlackText? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonToken.StartObject)
+            if (reader.TokenType == JsonTokenType.StartObject)
             {
-                var item = JObject.Load(reader);
-                return GetElement(item);
-            }
-
-            if (reader.TokenType == JsonToken.StartArray)
-            {
-                reader.Read();
-                var ret = new List<object>();
-                while (reader.TokenType != JsonToken.EndArray)
-                {
-                    var item = JObject.Load(reader);
-                    ret.Add(GetElement(item));
-                    reader.Read();
-                }
-
-                return ret;
+                using var doc = JsonDocument.ParseValue(ref reader);
+                return GetElement(doc.RootElement, options);
             }
 
             return null;
         }
 
-        private SlackText GetElement(JObject item)
+        private SlackText GetElement(JsonElement element, JsonSerializerOptions options)
         {
-            if (!item.TryGetValue("type", StringComparison.OrdinalIgnoreCase, out JToken? textType))
+            if (element.ValueKind != JsonValueKind.Object)
+            {
+                throw new JsonException("Expected object for SlackText element");
+            }
+
+            if (!element.TryGetProperty("type", out var typeProperty))
             {
                 throw new JsonException("The type property was not found");
             }
 
-            var textTypeValue = textType.Value<string>();
+            var typeValue = typeProperty.GetString();
 
-            if (string.IsNullOrWhiteSpace(textTypeValue))
+            if (string.IsNullOrWhiteSpace(typeValue))
             {
-                throw new NullReferenceException($"{nameof(textTypeValue)} is null or whitespace");
+                throw new NullReferenceException($"{nameof(typeValue)} is null or whitespace");
             }
 
-            if (!SlackConverterHelpers.TextMapping.TryGetValue(textTypeValue, out var textClassType))
+            if (!SlackConverterHelpers.TextMapping.TryGetValue(typeValue, out var textClassType))
             {
-                throw new JsonException($"The type {textTypeValue} is not a text type that is supported");
+                throw new JsonException($"The type {typeValue} is not a text type that is supported");
             }
 
-            return (SlackText)item.ToObject(textClassType)!;
+            return (SlackText)JsonSerializer.Deserialize(element.GetRawText(), textClassType, options)!;
         }
 
-        public override bool CanConvert(Type objectType)
+        public override void Write(Utf8JsonWriter writer, SlackText value, JsonSerializerOptions options)
         {
-            return true;
+            JsonSerializer.Serialize(writer, value, value.GetType(), options);
         }
-
-        public override bool CanWrite => false;
     }
 }

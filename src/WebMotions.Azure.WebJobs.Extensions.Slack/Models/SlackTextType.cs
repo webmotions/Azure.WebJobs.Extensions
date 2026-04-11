@@ -1,8 +1,10 @@
 ﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using WebMotions.Azure.WebJobs.Extensions.Slack.Models.Objects;
 
 namespace WebMotions.Azure.WebJobs.Extensions.Slack.Models
 {
+    [JsonConverter(typeof(Converters.JsonStringEnumConverter<SlackTextType>))]
     public enum SlackTextType
     {
         [EnumMember(Value = "plain_text")]
